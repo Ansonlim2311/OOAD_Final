@@ -24,8 +24,4 @@ public class TopBar extends JPanel {
             add(backButton, BorderLayout.EAST);
         }
     }
-
-    public void setTitle(String newTitle) {
-        titleLabel.setText("  " + newTitle);
-    }
 }
