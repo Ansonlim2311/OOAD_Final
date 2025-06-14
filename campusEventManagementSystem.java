@@ -38,7 +38,8 @@ public class CampusEventManagementSystem {
         setTopBar(title, backAction);
         container.add(topBar, BorderLayout.NORTH);
         container.add(newPanel, BorderLayout.CENTER);
-        refreshUI();
+        container.revalidate();
+        container.repaint();
     }
 
     public void showMainPage() {
@@ -51,10 +52,5 @@ public class CampusEventManagementSystem {
 
     public void showParticipatePanel() {
         switchPanel("Participate Dashboard", e -> showMainPage(), new ParticipatePanel(this));
-    }
-
-    public void refreshUI() {
-        container.revalidate();
-        container.repaint();
     }
 }
