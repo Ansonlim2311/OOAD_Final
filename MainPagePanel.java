@@ -2,8 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainPagePanel extends JPanel {
-    JLabel titleLabel;
-    JButton organizerButton, participantButton;
+    private JLabel titleLabel;
+    private JButton organizerButton, participantButton;
 
     public MainPagePanel(CampusEventManagementSystem controller) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
