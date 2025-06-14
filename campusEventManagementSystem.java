@@ -3,9 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class CampusEventManagementSystem {
-    JFrame frame;
-    JPanel container, topBar;
-    JLabel headerLabel;
+    private JFrame frame;
+    private JPanel container;
+    private TopBar topBar;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new CampusEventManagementSystem().mainPageUI());
@@ -19,7 +19,7 @@ public class CampusEventManagementSystem {
 
         container = new JPanel(new BorderLayout());
 
-        topBar = new JPanel(new BorderLayout());
+        topBar = new TopBar("Campus Event Management", null);
         topBar.setBackground(Color.DARK_GRAY);
         topBar.setPreferredSize(new Dimension(frame.getWidth(), 40));
 
@@ -30,47 +30,27 @@ public class CampusEventManagementSystem {
     }
 
     public void setTopBar(String title, ActionListener backAction) {
-        topBar.removeAll();
+        topBar = new TopBar(title, backAction);
+    }
 
-        headerLabel = new JLabel("  " + title);
-        headerLabel.setForeground(Color.WHITE);
-        headerLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
-        topBar.add(headerLabel, BorderLayout.WEST);
-
-        if (backAction != null) {
-            JButton backButton = new JButton("Back");
-            backButton.setBackground(Color.GRAY);
-            backButton.setForeground(Color.WHITE);
-            backButton.addActionListener(backAction);
-            topBar.add(backButton, BorderLayout.EAST);
-        }
-
-        topBar.revalidate();
-        topBar.repaint();
+    private void switchPanel(String title, ActionListener backAction, JPanel newPanel) {
+        container.removeAll();
+        setTopBar(title, backAction);
+        container.add(topBar, BorderLayout.NORTH);
+        container.add(newPanel, BorderLayout.CENTER);
+        refreshUI();
     }
 
     public void showMainPage() {
-        container.removeAll();
-        setTopBar("Campus Event Management", null);
-        container.add(topBar, BorderLayout.NORTH);
-        container.add(new MainPagePanel(this), BorderLayout.CENTER);
-        refreshUI();
+        switchPanel("Campus Event Management", null, new MainPagePanel(this));
     }
 
     public void showOrganizerPanel() {
-        container.removeAll();
-        setTopBar("Organizer Dashboard", e -> showMainPage());
-        container.add(topBar, BorderLayout.NORTH);
-        container.add(new OrganizerPanel(this), BorderLayout.CENTER);
-        refreshUI();
+        switchPanel("Organizer Dashboard", e -> showMainPage(), new OrganizerPanel(this));
     }
 
     public void showParticipatePanel() {
-        container.removeAll();
-        setTopBar("Participate Dashboard", e -> showMainPage());
-        container.add(topBar, BorderLayout.NORTH);
-        container.add(new ParticipatePanel(this), BorderLayout.CENTER);
-        refreshUI();
+        switchPanel("Participate Dashboard", e -> showMainPage(), new ParticipatePanel(this));
     }
 
     public void refreshUI() {
