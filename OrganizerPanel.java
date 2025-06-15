@@ -7,7 +7,7 @@ public class OrganizerPanel extends JPanel {
 
         // Main Content Panel (placeholder)
         JPanel content = new JPanel();
-        content.setBackground(Color.WHITE);
+        content.setBackground(Color.LIGHT_GRAY);
         content.add(new JLabel("Organizer Portal Under Construction"));
 
         add(content, BorderLayout.CENTER);

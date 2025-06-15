@@ -7,7 +7,7 @@ public class ParticipatePanel extends JPanel {
 
         // Main Content Panel (placeholder)
         JPanel content = new JPanel();
-        content.setBackground(Color.WHITE);
+        content.setBackground(Color.LIGHT_GRAY);
         content.add(new JLabel("Participate Portal Under Construction"));
 
         add(content, BorderLayout.CENTER);

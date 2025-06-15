@@ -7,7 +7,7 @@ public class MainPagePanel extends JPanel {
 
     public MainPagePanel(CampusEventManagementSystem controller) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(Color.WHITE);
+        setBackground(Color.LIGHT_GRAY);
         setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
 
         titleLabel = new JLabel("Welcome to Campus Event Management");
@@ -20,6 +20,9 @@ public class MainPagePanel extends JPanel {
         organizerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         organizerButton.setPreferredSize(new Dimension(180, 40));
         organizerButton.setMaximumSize(new Dimension(180, 40));
+        organizerButton.setBackground(Color.GRAY);
+        organizerButton.setForeground(Color.WHITE);
+        organizerButton.setFocusPainted(false);
         organizerButton.addActionListener(event -> controller.showOrganizerPanel());
         add(organizerButton);
 
@@ -29,6 +32,9 @@ public class MainPagePanel extends JPanel {
         participantButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         participantButton.setPreferredSize(new Dimension(180, 40));
         participantButton.setMaximumSize(new Dimension(180, 40));
+        participantButton.setBackground(Color.GRAY);
+        participantButton.setForeground(Color.WHITE);
+        participantButton.setFocusPainted(false);
         participantButton.addActionListener(event -> controller.showParticipatePanel());
         add(participantButton);
     }
