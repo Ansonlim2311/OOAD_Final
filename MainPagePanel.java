@@ -23,6 +23,7 @@ public class MainPagePanel extends JPanel {
         organizerButton.setBackground(Color.GRAY);
         organizerButton.setForeground(Color.WHITE);
         organizerButton.setFocusPainted(false);
+        organizerButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         organizerButton.addActionListener(event -> controller.showOrganizerPanel());
         add(organizerButton);
 
@@ -35,6 +36,7 @@ public class MainPagePanel extends JPanel {
         participantButton.setBackground(Color.GRAY);
         participantButton.setForeground(Color.WHITE);
         participantButton.setFocusPainted(false);
+        participantButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         participantButton.addActionListener(event -> controller.showParticipatePanel());
         add(participantButton);
     }
