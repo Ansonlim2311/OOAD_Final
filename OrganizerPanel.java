@@ -12,11 +12,11 @@ public class OrganizerPanel extends JPanel {
         // Main Content Panel (placeholder)
         JPanel content = new JPanel();
         content.setBackground(Color.LIGHT_GRAY);
-        // content.add(new JLabel("Organizer Portal Under Construction"));
 
         // 按钮面板，水平排列按钮
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
+        buttonPanel.setBackground(Color.LIGHT_GRAY);
 
         addButton = new JButton("ADD");
         styleButton(addButton);
