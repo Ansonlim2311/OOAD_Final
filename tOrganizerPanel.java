@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class OrganizerPanel extends JPanel {
+public class tOrganizerPanel extends JPanel {
     private JButton addButton;
     private JButton deleteButton;
     private JButton updateButton;
@@ -11,7 +11,7 @@ public class OrganizerPanel extends JPanel {
     private JTextField dateField;
     private JSpinner capacityfield;
 
-    public OrganizerPanel(CampusEventManagementSystem controller) {
+    public tOrganizerPanel(CampusEventManagementSystem controller) {
         setLayout(new BorderLayout());
 
         // ----------- Top Button Panel ------------
