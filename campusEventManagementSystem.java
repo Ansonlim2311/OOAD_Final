@@ -14,14 +14,14 @@ public class CampusEventManagementSystem {
     private void mainPageUI() {
         frame = new JFrame("Campus Event Management System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 500);
+        frame.setSize(1500, 1000);
         frame.setLocationRelativeTo(null);
 
         container = new JPanel(new BorderLayout());
 
         topBar = new TopBar("Campus Event Management", null);
-        topBar.setBackground(Color.DARK_GRAY);
-        topBar.setPreferredSize(new Dimension(frame.getWidth(), 40));
+        topBar.setBackground(Color.WHITE);
+        topBar.setPreferredSize(new Dimension(frame.getWidth(), 60));
 
         container.add(topBar, BorderLayout.NORTH);
         showMainPage();

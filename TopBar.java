@@ -8,18 +8,20 @@ public class TopBar extends JPanel {
 
     public TopBar(String title, ActionListener backAction) {
         setLayout(new BorderLayout());
-        setBackground(Color.DARK_GRAY);
-        setPreferredSize(new Dimension(0, 40));
+        setBackground(new Color(244, 0, 0));
+        setPreferredSize(new Dimension(0, 60));
 
-        titleLabel = new JLabel("  " + title);
+        titleLabel = new JLabel(" " + title);
         titleLabel.setForeground(Color.WHITE);
-        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
+        titleLabel.setFont(new Font("Monospaced", Font.BOLD, 26));
         add(titleLabel, BorderLayout.WEST);
 
         if (backAction != null) {
             backButton = new JButton("Back");
-            backButton.setBackground(Color.GRAY);
-            backButton.setForeground(Color.WHITE);
+            backButton.setFont(new Font("Monospaced", Font.BOLD, 25));
+            backButton.setPreferredSize(new Dimension(100, 60));
+            backButton.setBackground(Color.WHITE);
+            backButton.setForeground(Color.BLACK);
             backButton.addActionListener(backAction);
             add(backButton, BorderLayout.EAST);
         }
