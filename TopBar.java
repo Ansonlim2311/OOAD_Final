@@ -22,6 +22,7 @@ public class TopBar extends JPanel {
             backButton.setPreferredSize(new Dimension(100, 60));
             backButton.setBackground(Color.WHITE);
             backButton.setForeground(Color.BLACK);
+            backButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
             backButton.addActionListener(backAction);
             add(backButton, BorderLayout.EAST);
         }
