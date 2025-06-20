@@ -1,103 +1,123 @@
-import javax.swing.*;
-import java.awt.*;
+// import javax.swing.*;
+// // import com.toedter.calendar.JDateChooser;
+// import java.awt.*;
+// import java.time.LocalDate;
+// import java.time.format.DateTimeFormatter;
+// import java.time.format.DateTimeParseException;
 
-public class tOrganizerPanel extends JPanel {
-    private JButton addButton;
-    private JButton deleteButton;
-    private JButton updateButton;
-    private JComboBox<String> venue;
-    private JComboBox<String> typeevent;
-    private JTextField eventNameField;
-    private JTextField dateField;
-    private JSpinner capacityfield;
+// public class OrganizerPanel extends JPanel {
+//     private JButton addButton;
+//     private JButton deleteButton;
+//     private JButton updateButton;
+//     private JComboBox<String> venue;
+//     private JComboBox<String> typeevent;
+//     private JTextField eventNameField;
+//     private JTextField dateField;
+//     // private JDateChooser dateField;
+//     private JSpinner capacityfield;
 
-    public tOrganizerPanel(CampusEventManagementSystem controller) {
-        setLayout(new BorderLayout());
-
-        // ----------- Top Button Panel ------------
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
-        buttonPanel.setBackground(Color.LIGHT_GRAY);
-
-        addButton = new JButton("ADD");
-        styleButton(addButton);
-        deleteButton = new JButton("DELETE");
-        styleButton(deleteButton);
-        updateButton = new JButton("UPDATE");
-        styleButton(updateButton);
-
-        buttonPanel.add(addButton);
-        buttonPanel.add(deleteButton);
-        buttonPanel.add(updateButton);
-
-        add(buttonPanel, BorderLayout.NORTH);
-
-        // ----------- Main Form Panel ------------
-        JPanel content = new JPanel();
-        content.setBackground(Color.LIGHT_GRAY);
-        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-        content.add(Box.createVerticalStrut(1)); // spacing
-
-// ----------- Horizontal Form Row Panel ------------
-        JPanel rowpanel = new JPanel();
-        rowpanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 1)); // 横向排列，中间间距20
-        rowpanel.setBackground(Color.LIGHT_GRAY);
-
-        // Event Name
-        JPanel namePanel = new JPanel(new BorderLayout());
-        namePanel.add(new JLabel("Event Name:"), BorderLayout.NORTH);
-        eventNameField = new JTextField(); 
-        eventNameField.setPreferredSize(new Dimension(240, 25)); // 设置合适的宽高
-        namePanel.add(eventNameField, BorderLayout.CENTER);
-
-        // Date
-        JPanel datePanel = new JPanel(new BorderLayout());
-        datePanel.add(new JLabel("Date: yyyy-MM-dd"), BorderLayout.NORTH);
-        dateField = new JTextField(); 
-        dateField.setPreferredSize(new Dimension(130, 25)); // 设置合适的宽高
-        datePanel.add(dateField, BorderLayout.CENTER);
+//     // private JDateChooser dateChooser;
 
 
-        // Venue
-        JPanel venuePanel = new JPanel(new BorderLayout());
-        venuePanel.add(new JLabel("Venue:"), BorderLayout.NORTH);
-        String[] venues = {"Venue 1", "Venue 2", "Venue 3"};
-        venue = new JComboBox<>(venues);
-        venue.setPreferredSize(new Dimension(100, 25));
-        venuePanel.add(venue, BorderLayout.CENTER);
+//     public OrganizerPanel(CampusEventManagementSystem controller) {
+//         setLayout(new BorderLayout());
 
-        // Type
-        JPanel typePanel = new JPanel(new BorderLayout());
-        typePanel.add(new JLabel("Type:"), BorderLayout.NORTH);
-        String[] types = {"Type 1", "Type 2", "Type 3"};
-        typeevent = new JComboBox<>(types);
-        typeevent.setPreferredSize(new Dimension(100, 25));
-        typePanel.add(typeevent, BorderLayout.CENTER);
+//         // Main Content Panel (placeholder)
+//         JPanel content = new JPanel();
+//         content.setBackground(Color.LIGHT_GRAY);
+//         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+//         content.add(Box.createVerticalStrut(80));
 
-        // Capacity
-        JPanel capacityPanel = new JPanel(new BorderLayout());
-        capacityPanel.add(new JLabel("Capacity:"), BorderLayout.NORTH);
-        capacityfield = new JSpinner(new SpinnerNumberModel(1, 0, null, 1));
-        capacityfield.setPreferredSize(new Dimension(80, 25));
-        capacityPanel.add(capacityfield, BorderLayout.CENTER);
+//         // 按钮面板，水平排列按钮
+//         JPanel buttonPanel = new JPanel();
+//         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
+//         buttonPanel.setBackground(Color.LIGHT_GRAY);
 
-        // 添加所有字段到横向 rowpanel
-        rowpanel.add(namePanel);
-        rowpanel.add(datePanel);
-        rowpanel.add(venuePanel);
-        rowpanel.add(typePanel);
-        rowpanel.add(capacityPanel);
+//         addButton = new JButton("ADD");
+//         styleButton(addButton);
+//         // addButton.addActionListener(e -> controller.showOrganizerPanel());
 
-        // 加到主 content 中（BoxLayout 垂直排列）
-        content.add(rowpanel);
-        content.add(Box.createVerticalStrut(10)); // spacing
-        add(content, BorderLayout.CENTER);
-    }
+//         deleteButton = new JButton("DELETE");
+//         styleButton(deleteButton);
+//         // deleteButton.addActionListener(e -> controller.deleteAction());
 
-    private void styleButton(JButton button) {
-        button.setPreferredSize(new Dimension(120, 40));
-        button.setBackground(Color.GRAY);
-        button.setForeground(Color.WHITE);
-        button.setFocusPainted(false);
-        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-    }
-}
+//         updateButton = new JButton("UPDATE");
+//         styleButton(updateButton);
+//         // updateButton.addActionListener(e -> controller.updateAction());
+
+//         buttonPanel.add(addButton);
+//         buttonPanel.add(deleteButton);
+//         buttonPanel.add(updateButton);
+
+//         add(buttonPanel, BorderLayout.NORTH);
+//         add(content, BorderLayout.CENTER);
+
+//         //---------------------------------Event Name--------------------------------
+//         JLabel eventNameLabel = new JLabel("Event Name:");
+//         eventNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+//         content.add(eventNameLabel);
+//         eventNameField = new JTextField();
+//         eventNameField.setMaximumSize(new Dimension(200, 30));
+//         eventNameField.setAlignmentX(Component.CENTER_ALIGNMENT);
+//         content.add(eventNameField);
+        
+//         //---------------------------------Event Date--------------------------------
+//         JLabel dateselectionLabel = new JLabel("Date:");
+//         dateselectionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+//         content.add(dateselectionLabel);
+//         dateField = new JTextField("yyyy-MM-dd");
+//         dateField.setMaximumSize(new Dimension(100, 30));
+//         dateField.setAlignmentX(Component.CENTER_ALIGNMENT);
+//         content.add(dateField);
+
+
+//         //--------------------------------Event Venue-----------------------------------
+//         JLabel venueLabel = new JLabel("Venue:");
+//         venueLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+//         content.add(venueLabel);
+//         String[] venues = {"Venue 1", "Venue 2", "Venue 3"};
+//         venue = new JComboBox<>(venues);
+//         venue.setMaximumSize(new Dimension(100, 30));
+//         venue.setAlignmentX(Component.CENTER_ALIGNMENT);
+//         content.add(venue);
+
+//         //-------------------------------Event Type-----------------------------------
+//         JLabel typeEventLabel = new JLabel("Event Type:");
+//         typeEventLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+//         content.add(typeEventLabel);
+//         content.add(Box.createVerticalStrut(10));
+//         String eventTypes[] = {"Type 1", "Type 2", "Type 3"};
+//         typeevent = new JComboBox<>(eventTypes);
+//         typeevent.setMaximumSize(new Dimension(100, 30));
+//         typeevent.setAlignmentX(Component.CENTER_ALIGNMENT);
+//         content.add(typeevent);
+        
+//         //--------------------------------Event Capacity--------------------------------
+//         JLabel capacityLabel = new JLabel("Capacity:");
+//         capacityLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+//         content.add(capacityLabel);
+//         capacityfield = new JSpinner(new SpinnerNumberModel(1, 0, null, 1));
+//         capacityfield.setMaximumSize(new Dimension(50, 30));
+//         capacityfield.setAlignmentX(Component.CENTER_ALIGNMENT);
+//         content.add(capacityfield);
+
+
+//     }
+
+//     private void styleButton(JButton button) {
+//         button.setPreferredSize(new Dimension(120, 40));
+//         button.setBackground(Color.GRAY);
+//         button.setForeground(Color.WHITE);
+//         button.setFocusPainted(false);
+//         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//     }
+    
+
+
+
+// }
+
+
+  
+
+// 帮我把eventname date venue type 排成一排

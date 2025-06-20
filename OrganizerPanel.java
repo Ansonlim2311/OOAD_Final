@@ -2,102 +2,180 @@ import javax.swing.*;
 import java.awt.*;
 
 public class OrganizerPanel extends JPanel {
-    private JButton addButton;
-    private JButton deleteButton;
-    private JButton updateButton;
-    private JComboBox<String> venue;
-    private JComboBox<String> typeevent;
-    private JTextField eventNameField;
-    private JTextField dateField;
-    private JSpinner capacityfield;
+    private JLabel typeLabel, EventNameLabel, dateLabel, venueLabel, capacityLabel, registrationLabel;
+    private JButton addButton, deleteButton, updateButton;
+    private JComboBox<String> venue, typeevent;
+    private JTextField eventNameField, dateField;
+    private JSpinner capacityfield, registrationfield;
 
     public OrganizerPanel(CampusEventManagementSystem controller) {
         setLayout(new BorderLayout());
+        setBackground(Color.LIGHT_GRAY);
 
-        // ----------- Top Button Panel ------------
+        JSplitPane mainContentSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        mainContentSplitPane.setDividerLocation(350);
+        mainContentSplitPane.setDividerSize(5);
+        mainContentSplitPane.setContinuousLayout(true);
+
+        // -------- Left Panel: Form --------
+        JPanel formPanel = new JPanel(new GridBagLayout());
+        formPanel.setBackground(Color.LIGHT_GRAY);
+        formPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weightx = 0.0;
+        gbc.weighty = 0.0;
+
+        int verticalGap = 10;
+        int sectionGap = 20;
+        int row = 0;
+
+        // Event Name
+        gbc.gridx = 0; gbc.gridy = row;
+        gbc.insets = new Insets(verticalGap, 0, verticalGap, 0);
+        EventNameLabel = new JLabel("Event Name:");
+        EventNameLabel.setFont(new Font("Monospaced", Font.BOLD, 18));
+        formPanel.add(EventNameLabel, gbc);
+        row++;
+        gbc.gridx = 0; gbc.gridy = row;
+        gbc.insets = new Insets(verticalGap, 0, sectionGap, 0);
+        eventNameField = new JTextField();
+        eventNameField.setFont(new Font("Monospaced", Font.BOLD,  18));
+        eventNameField.setPreferredSize(new Dimension(250, 35));
+        formPanel.add(eventNameField, gbc);
+        row++;
+
+        // Date
+        gbc.gridx = 0; gbc.gridy = row;
+        gbc.insets = new Insets(verticalGap, 0, verticalGap, 0);
+        dateLabel = new JLabel("Date:");
+        dateLabel.setFont(new Font("Monospaced", Font.BOLD, 18));
+        formPanel.add(dateLabel, gbc);
+        row++;
+        gbc.gridx = 0; gbc.gridy = row;
+        gbc.insets = new Insets(verticalGap, 0, sectionGap, 0);
+        dateField = new JTextField("YYYY-MM-DD");
+        dateField.setFont(new Font("Monospaced", Font.BOLD, 18));
+        dateField.setPreferredSize(new Dimension(250, 35));
+        formPanel.add(dateField, gbc);
+        row++;
+
+        // Venue
+        gbc.gridx = 0; gbc.gridy = row;
+        gbc.insets = new Insets(verticalGap, 0, verticalGap, 0);
+        venueLabel = new JLabel("Venue:");
+        venueLabel.setFont(new Font("Monospaced", Font.BOLD, 18));
+        formPanel.add(venueLabel, gbc);
+        row++;
+        gbc.gridx = 0; gbc.gridy = row;
+        gbc.insets = new Insets(verticalGap, 0, sectionGap, 0);
+        venue = new JComboBox<>(new String[]{"DTC","Stadium","CNMX 1001", "CQAR 0001","CQAR 0002","CQAR 0003","CQAR 0004", "CQAR 1001","CQAR 1002","CQAR 1003","CQAR 1004", "CQAR 1005","CQAR 2001","CQAR 2002","CQAR 2003","CQAR 2004", "CQAR 2005", "CQAR 3001","CQAR 3002","CQAR 3003","CQAR 3004", "CQAR 3005", "CQAR 4001","CQAR 4002","CQAR 4003","CQAR 4004", "CQAR 4005"
+        ,"CQMX 1001", "CQMX 1002","CQMX 1003","CQMX 1004", "CQMX 1005",});
+        venue.setFont(new Font("Monospaced", Font.BOLD, 18));
+        venue.setPreferredSize(new Dimension(250, 35));
+        formPanel.add(venue, gbc);
+        row++;
+
+        // Event Type
+        gbc.gridx = 0; gbc.gridy = row;
+        gbc.insets = new Insets(verticalGap, 0, verticalGap, 0);
+        typeLabel = new JLabel("Event Type:");
+        typeLabel.setFont(new Font("Monospaced", Font.BOLD, 18));
+        formPanel.add(typeLabel, gbc);
+        row++;
+        gbc.gridx = 0; gbc.gridy = row;
+        gbc.insets = new Insets(verticalGap, 0, sectionGap, 0);
+        typeevent = new JComboBox<>(new String[]{"Seminars", "Workshops", "Cultural Events", "Sports Events"});
+        typeevent.setFont(new Font("Monospaced", Font.BOLD, 18));
+        typeevent.setPreferredSize(new Dimension(250, 35));
+        formPanel.add(typeevent, gbc);
+        row++;
+
+        // Capacity
+        // Capacity
+        gbc.gridx = 0; gbc.gridy = row;
+        gbc.insets = new Insets(verticalGap, 0, verticalGap, 0);
+        capacityLabel = new JLabel("Capacity:");
+        capacityLabel.setFont(new Font("Monospaced", Font.BOLD,  18));
+        formPanel.add(capacityLabel, gbc);
+        row++;
+        gbc.gridx = 0; gbc.gridy = row;
+        gbc.insets = new Insets(verticalGap, 0, verticalGap, 0);
+        capacityfield = new JSpinner(new SpinnerNumberModel(1, 0, Integer.MAX_VALUE, 1));
+        capacityfield.setFont(new Font("Monospaced", Font.BOLD, 18));
+        capacityfield.setPreferredSize(new Dimension(100, 35));
+        formPanel.add(capacityfield, gbc);
+        row++;
+
+        // Registration Fee
+        gbc.gridx = 0; gbc.gridy = row;
+        gbc.insets = new Insets(verticalGap, 0, verticalGap, 0);
+        gbc.weighty = 0.0; // This is fine for the label
+        registrationLabel = new JLabel("Registration Fee:");
+        registrationLabel.setFont(new Font("Monospaced", Font.BOLD,  18));
+        formPanel.add(registrationLabel, gbc);
+        row++;
+        gbc.gridx = 0; gbc.gridy = row;
+        gbc.insets = new Insets(verticalGap, 0, verticalGap, 0);
+        registrationfield = new JSpinner(new SpinnerNumberModel(1, 0, Integer.MAX_VALUE, 1));
+        registrationfield.setFont(new Font("SansSerif", Font.PLAIN, 18));
+        registrationfield.setPreferredSize(new Dimension(100, 35));
+        formPanel.add(registrationfield, gbc);
+
+        // Horizontal glue
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.gridheight = GridBagConstraints.REMAINDER;
+        formPanel.add(Box.createGlue(), gbc);
+
+        mainContentSplitPane.setLeftComponent(formPanel);
+
+        // -------- Right Panel: Placeholder (no table yet) --------
+        JPanel listPanel = new JPanel(new BorderLayout());
+        listPanel.setBackground(Color.WHITE);
+        listPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+
+        JLabel placeholder = new JLabel("Event Table Placeholder");
+        placeholder.setHorizontalAlignment(SwingConstants.CENTER);
+        placeholder.setFont(new Font("SansSerif", Font.ITALIC, 16));
+        placeholder.setForeground(Color.GRAY);
+        listPanel.add(placeholder, BorderLayout.CENTER);
+
+        mainContentSplitPane.setRightComponent(listPanel);
+        add(mainContentSplitPane, BorderLayout.CENTER);
+
+        // -------- Button Panel --------
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
         buttonPanel.setBackground(Color.LIGHT_GRAY);
 
-        addButton = new JButton("ADD");
+        addButton = new JButton("Add");
+        deleteButton = new JButton("Delete");
+        updateButton = new JButton("Update");
+
         styleButton(addButton);
-        deleteButton = new JButton("DELETE");
         styleButton(deleteButton);
-        updateButton = new JButton("UPDATE");
         styleButton(updateButton);
 
         buttonPanel.add(addButton);
         buttonPanel.add(deleteButton);
         buttonPanel.add(updateButton);
 
-        add(buttonPanel, BorderLayout.NORTH);
-
-        // ----------- Main Form Panel ------------
-        JPanel content = new JPanel();
-        content.setBackground(Color.LIGHT_GRAY);
-        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-        content.add(Box.createVerticalStrut(1)); // spacing
-
-// ----------- Horizontal Form Row Panel ------------
-        JPanel rowpanel = new JPanel();
-        rowpanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 1)); // 横向排列，中间间距20
-        rowpanel.setBackground(Color.LIGHT_GRAY);
-
-        // Event Name
-        JPanel namePanel = new JPanel(new BorderLayout());
-        namePanel.add(new JLabel("Event Name:"), BorderLayout.NORTH);
-        eventNameField = new JTextField(); 
-        eventNameField.setPreferredSize(new Dimension(240, 25)); // 设置合适的宽高
-        namePanel.add(eventNameField, BorderLayout.CENTER);
-
-        // Date
-        JPanel datePanel = new JPanel(new BorderLayout());
-        datePanel.add(new JLabel("Date: yyyy-MM-dd"), BorderLayout.NORTH);
-        dateField = new JTextField(); 
-        dateField.setPreferredSize(new Dimension(130, 25)); // 设置合适的宽高
-        datePanel.add(dateField, BorderLayout.CENTER);
-
-
-        // Venue
-        JPanel venuePanel = new JPanel(new BorderLayout());
-        venuePanel.add(new JLabel("Venue:"), BorderLayout.NORTH);
-        String[] venues = {"Venue 1", "Venue 2", "Venue 3"};
-        venue = new JComboBox<>(venues);
-        venue.setPreferredSize(new Dimension(100, 25));
-        venuePanel.add(venue, BorderLayout.CENTER);
-
-        // Type
-        JPanel typePanel = new JPanel(new BorderLayout());
-        typePanel.add(new JLabel("Type:"), BorderLayout.NORTH);
-        String[] types = {"Type 1", "Type 2", "Type 3"};
-        typeevent = new JComboBox<>(types);
-        typeevent.setPreferredSize(new Dimension(100, 25));
-        typePanel.add(typeevent, BorderLayout.CENTER);
-
-        // Capacity
-        JPanel capacityPanel = new JPanel(new BorderLayout());
-        capacityPanel.add(new JLabel("Capacity:"), BorderLayout.NORTH);
-        capacityfield = new JSpinner(new SpinnerNumberModel(1, 0, null, 1));
-        capacityfield.setPreferredSize(new Dimension(80, 25));
-        capacityPanel.add(capacityfield, BorderLayout.CENTER);
-
-        // 添加所有字段到横向 rowpanel
-        rowpanel.add(namePanel);
-        rowpanel.add(datePanel);
-        rowpanel.add(venuePanel);
-        rowpanel.add(typePanel);
-        rowpanel.add(capacityPanel);
-
-        // 加到主 content 中（BoxLayout 垂直排列）
-        content.add(rowpanel);
-        content.add(Box.createVerticalStrut(10)); // spacing
-        add(content, BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
     }
 
     private void styleButton(JButton button) {
-        button.setPreferredSize(new Dimension(120, 40));
-        button.setBackground(Color.GRAY);
+        button.setPreferredSize(new Dimension(100, 35));
+        button.setBackground(new Color(204, 0, 0));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        button.setFont(new Font("SansSerif", Font.BOLD, 14));
+        button.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
     }
+
 }
