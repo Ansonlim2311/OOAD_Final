@@ -2,15 +2,15 @@ public class Event {
     private String eventName;
     private String date;
     private String venue;
-    private String typeEvent;
+    private String eventType;
     private int capacity;
     private double baseFee;
 
-    public Event(String eventName, String date, String venue, String typeEvent, int capacity, double baseFee) {
+    public Event(String eventName, String date, String venue, String eventType, int capacity, double baseFee) {
         this.eventName = eventName;
         this.date = date;
         this.venue = venue;
-        this.typeEvent = typeEvent;
+        this.eventType = eventType;
         this.capacity = capacity;
         this.baseFee = baseFee;
     }
@@ -36,11 +36,11 @@ public class Event {
         this.venue = venue;
     }
 
-    public String getTypeEvent() {
-        return typeEvent;
+    public String getEventType() {
+        return eventType;
     }
-    public void setTypeEvent(String typeEvent) {
-        this.typeEvent = typeEvent;
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
     }
 
     public int getCapacity() {
