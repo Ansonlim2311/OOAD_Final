@@ -5,6 +5,7 @@ public class OrganizerPanel extends JPanel {
     private JButton addButton, deleteButton, updateButton;
     private EventFormPanel formPanel;
 
+
     public OrganizerPanel(CampusEventManagementSystem controller, EventManager eventManager) {
         setLayout(new BorderLayout());
         setBackground(Color.LIGHT_GRAY);
@@ -51,6 +52,10 @@ public class OrganizerPanel extends JPanel {
         buttonPanel.add(updateButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
+
+        // -------- Action Listeners --------
+        addButton.addActionListener(new AddButtonHandler(formPanel));
+
     }
 
     private void styleButton(JButton button) {

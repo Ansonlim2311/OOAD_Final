@@ -23,11 +23,13 @@ public class EventFormPanel extends JPanel {
         eventNameField = createTextField(250);
         dateField = createTextField(250);
         dateField.setText("YYYY-MM-DD");
+        System.out.println("Date entered: " + dateField.getText());
+
 
         venue = new JComboBox<>(getVenueOptions());
         styleComboBox(venue);
 
-        typeevent = new JComboBox<>(new String[]{"Seminars", "Workshops", "Cultural Events", "Sports Events"});
+        typeevent = new JComboBox<>(new String[]{"None","Seminars", "Workshops", "Cultural Events", "Sports Events"});
         styleComboBox(typeevent);
 
         capacityField = new JSpinner(new SpinnerNumberModel(1, 0, Integer.MAX_VALUE, 1));
@@ -87,7 +89,7 @@ public class EventFormPanel extends JPanel {
 
     private String[] getVenueOptions() {
         return new String[]{
-            "DTC", "Stadium", "CNMX 1001", "CQAR 0001", "CQAR 0002", "CQAR 0003", "CQAR 0004",
+            "None","DTC", "Stadium", "CNMX 1001", "CQAR 0001", "CQAR 0002", "CQAR 0003", "CQAR 0004",
             "CQAR 1001", "CQAR 1002", "CQAR 1003", "CQAR 1004", "CQAR 1005",
             "CQAR 2001", "CQAR 2002", "CQAR 2003", "CQAR 2004", "CQAR 2005",
             "CQAR 3001", "CQAR 3002", "CQAR 3003", "CQAR 3004", "CQAR 3005",
