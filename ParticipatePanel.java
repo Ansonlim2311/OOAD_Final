@@ -12,13 +12,6 @@ public class ParticipatePanel extends JPanel {
         content.setBackground(Color.WHITE);
         content.add(new JLabel("Participate Portal Under Construction"));
 
-        payButton = new JButton("Pay");
-
-        styleButton(payButton);
-        payButton.addActionListener(e -> controller.showFeeCalculationPanel());
-
-        content.add(payButton);
-
         add(content, BorderLayout.CENTER);
     }
 
