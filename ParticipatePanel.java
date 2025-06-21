@@ -1,11 +1,15 @@
 import javax.swing.*;
+
+import javafx.scene.layout.Border;
+
 import java.awt.*;
 
 public class ParticipatePanel extends JPanel {
     JButton payButton;
 
     public ParticipatePanel(CampusEventManagementSystem controller, EventManager eventManager) {
-        JPanel panel = new JPanel (new BorderLayout());
+        setLayout(new BorderLayout());
+
         JPanel listPanel = new JPanel(new BorderLayout());
         listPanel.setBackground(Color.WHITE);
         listPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
@@ -16,10 +20,8 @@ public class ParticipatePanel extends JPanel {
         JScrollPane scrollPane = new JScrollPane(eventTable);
         scrollPane.setBorder(BorderFactory.createTitledBorder("Event List"));
         listPanel.add(scrollPane, BorderLayout.CENTER);
-        panel.add(listPanel, BorderLayout.CENTER);
 
-        // mainContentSplitPane.setRightComponent(listPanel);
-        // add(mainContentSplitPane, BorderLayout.CENTER);
+        add(listPanel, BorderLayout.CENTER);
     }
 
     private void styleButton(JButton button) {
