@@ -1,7 +1,4 @@
 import javax.swing.*;
-
-import javafx.scene.layout.Border;
-
 import java.awt.*;
 
 public class ParticipatePanel extends JPanel {
