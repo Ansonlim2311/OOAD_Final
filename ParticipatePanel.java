@@ -4,22 +4,21 @@ import java.awt.*;
 public class ParticipatePanel extends JPanel {
     JButton payButton;
 
-    public ParticipatePanel(CampusEventManagementSystem controller) {
+    public ParticipatePanel(CampusEventManagementSystem controller, EventManager eventManager) {
         setLayout(new BorderLayout());
 
-        // Main Content Panel (placeholder)
-        JPanel content = new JPanel();
-        content.setBackground(Color.WHITE);
-        content.add(new JLabel("Participate Portal Under Construction"));
+        JPanel listPanel = new JPanel(new BorderLayout());
+        listPanel.setBackground(Color.WHITE);
+        listPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
-        payButton = new JButton("Pay");
+        EventTable tableModel = new EventTable(eventManager.getEvents());
+        JTable eventTable = new JTable(tableModel);
+        eventTable.getTableHeader().setReorderingAllowed(false);
+        JScrollPane scrollPane = new JScrollPane(eventTable);
+        scrollPane.setBorder(BorderFactory.createTitledBorder("Event List"));
+        listPanel.add(scrollPane, BorderLayout.CENTER);
 
-        styleButton(payButton);
-        payButton.addActionListener(e -> controller.showFeeCalculationPanel());
-
-        content.add(payButton);
-
-        add(content, BorderLayout.CENTER);
+        add(listPanel, BorderLayout.CENTER);
     }
 
     private void styleButton(JButton button) {
