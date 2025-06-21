@@ -8,7 +8,7 @@ public class OrganizerPanel extends JPanel {
     private JTextField eventNameField, dateField;
     private JSpinner capacityfield, registrationfield;
 
-    public OrganizerPanel(CampusEventManagementSystem controller) {
+    public OrganizerPanel(CampusEventManagementSystem controller, EventManager eventManager) {
         setLayout(new BorderLayout());
         setBackground(Color.LIGHT_GRAY);
 
@@ -94,7 +94,6 @@ public class OrganizerPanel extends JPanel {
         row++;
 
         // Capacity
-        // Capacity
         gbc.gridx = 0; gbc.gridy = row;
         gbc.insets = new Insets(verticalGap, 0, verticalGap, 0);
         capacityLabel = new JLabel("Capacity:");
@@ -140,11 +139,12 @@ public class OrganizerPanel extends JPanel {
         listPanel.setBackground(Color.WHITE);
         listPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
-        JLabel placeholder = new JLabel("Event Table Placeholder");
-        placeholder.setHorizontalAlignment(SwingConstants.CENTER);
-        placeholder.setFont(new Font("SansSerif", Font.ITALIC, 16));
-        placeholder.setForeground(Color.GRAY);
-        listPanel.add(placeholder, BorderLayout.CENTER);
+        EventTable tableModel = new EventTable(eventManager.getEvents());
+        JTable eventTable = new JTable(tableModel);
+        eventTable.getTableHeader().setReorderingAllowed(false);
+        JScrollPane scrollPane = new JScrollPane(eventTable);
+        scrollPane.setBorder(BorderFactory.createTitledBorder("Event List"));
+        listPanel.add(scrollPane, BorderLayout.CENTER);
 
         mainContentSplitPane.setRightComponent(listPanel);
         add(mainContentSplitPane, BorderLayout.CENTER);

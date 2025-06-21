@@ -25,10 +25,11 @@ public class EventTable extends AbstractTableModel{
         Event event = events.get(rowIndex);
         return switch (columnIndex) {
             case 0 -> event.getEventName();
-            case 1 -> event.getCapacity();
-            case 2 -> event.getDate();
+            case 1 -> event.getDate();
+            case 2 -> event.getVenue();
             case 3 -> event.getEventType();
-            case 4 -> event.getBaseFee();
+            case 4 -> event.getCapacity();
+            case 5 -> event.getBaseFee();
             default -> null;
         };
     }

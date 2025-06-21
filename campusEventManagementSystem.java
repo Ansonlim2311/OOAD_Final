@@ -6,6 +6,7 @@ public class CampusEventManagementSystem {
     private JFrame frame;
     private JPanel container;
     private TopBar topBar;
+    private EventManager eventManager = new EventManager();
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new CampusEventManagementSystem().mainPageUI());
@@ -47,7 +48,7 @@ public class CampusEventManagementSystem {
     }
 
     public void showOrganizerPanel() {
-        switchPanel("Organizer Dashboard", e -> showMainPage(), new OrganizerPanel(this));
+        switchPanel("Organizer Dashboard", e -> showMainPage(), new OrganizerPanel(this, eventManager));
     }
 
     public void showParticipatePanel() {
