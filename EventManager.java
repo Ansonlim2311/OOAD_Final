@@ -11,4 +11,8 @@ public class EventManager {
     public List<Event> getEvents() {
         return events;
     }
+
+    public void addEvent(Event event) {
+        events.add(event);
+    }
 }

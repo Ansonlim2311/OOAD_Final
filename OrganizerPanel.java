@@ -5,7 +5,6 @@ public class OrganizerPanel extends JPanel {
     private JButton addButton, deleteButton, updateButton;
     private EventFormPanel formPanel;
 
-
     public OrganizerPanel(CampusEventManagementSystem controller, EventManager eventManager) {
         setLayout(new BorderLayout());
         setBackground(Color.LIGHT_GRAY);
@@ -20,12 +19,12 @@ public class OrganizerPanel extends JPanel {
         formPanel = new EventFormPanel();
         mainContentSplitPane.setLeftComponent(formPanel);
 
-// -------- Right Panel: Placeholder (no table yet) --------
+        // -------- Right Panel: Table --------
         JPanel listPanel = new JPanel(new BorderLayout());
         listPanel.setBackground(Color.WHITE);
         listPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
-        EventTable tableModel = new EventTable(eventManager.getEvents());
+        EventTable tableModel = new EventTable(eventManager.getEvents()); // ✅ only here
         JTable eventTable = new JTable(tableModel);
         eventTable.getTableHeader().setReorderingAllowed(false);
         JScrollPane scrollPane = new JScrollPane(eventTable);
@@ -53,9 +52,10 @@ public class OrganizerPanel extends JPanel {
 
         add(buttonPanel, BorderLayout.SOUTH);
 
-        // -------- Action Listeners --------
-        addButton.addActionListener(new AddButtonHandler(formPanel));
-
+        // ✅ Register the handler here using the same tableModel
+        addButton.addActionListener(new AddButtonHandler(formPanel, eventManager, tableModel));
+        deleteButton.addActionListener(new DeleteButtonHandler(eventTable, eventManager, tableModel));
+        updateButton.addActionListener(new UpdateButtonHandler(formPanel, eventManager, tableModel));
     }
 
     private void styleButton(JButton button) {

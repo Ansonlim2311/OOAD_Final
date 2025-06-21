@@ -4,9 +4,13 @@ import javax.swing.*;
 
 public class AddButtonHandler implements ActionListener {
     private EventFormPanel formPanel;
+    private EventManager eventManager;
+    private EventTable eventTable;
 
-    public AddButtonHandler(EventFormPanel formPanel) {
+    public AddButtonHandler(EventFormPanel formPanel, EventManager eventManager, EventTable eventTable) {
         this.formPanel = formPanel;
+        this.eventManager = eventManager;
+        this.eventTable = eventTable;
     }
 
     @Override
@@ -30,6 +34,12 @@ public class AddButtonHandler implements ActionListener {
         System.out.println("Capacity: " + capacity);
         System.out.println("Fee: RM" + fee);
 
+        Event newEvent = new Event(name, date, venue, type, capacity, fee);
+        eventManager.addEvent(newEvent); // <-- 确保 EventManager 有 addEvent 方法
+
+    // 通知表格数据已更新
+        eventTable.fireTableDataChanged();
+
         JOptionPane.showMessageDialog(formPanel,
                 "Added Event:\n" +
                 "Name: " + name + "\n" +
@@ -42,4 +52,6 @@ public class AddButtonHandler implements ActionListener {
                 JOptionPane.INFORMATION_MESSAGE
         );
     }
+
+    
 }
