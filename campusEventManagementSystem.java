@@ -52,7 +52,7 @@ public class CampusEventManagementSystem {
     }
 
     public void showParticipatePanel() {
-        switchPanel("Registration System", e -> showMainPage(), new ParticipatePanel(this));
+        switchPanel("Registration System", e -> showMainPage(), new ParticipatePanel(this, eventManager));
     }
 
     public void showFeeCalculationPanel() {

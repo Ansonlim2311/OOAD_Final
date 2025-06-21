@@ -4,7 +4,22 @@ import java.awt.*;
 public class ParticipatePanel extends JPanel {
     JButton payButton;
 
-    public ParticipatePanel(CampusEventManagementSystem controller) {
+    public ParticipatePanel(CampusEventManagementSystem controller, EventManager eventManager) {
+        JPanel panel = new JPanel (new BorderLayout());
+        JPanel listPanel = new JPanel(new BorderLayout());
+        listPanel.setBackground(Color.WHITE);
+        listPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+
+        EventTable tableModel = new EventTable(eventManager.getEvents());
+        JTable eventTable = new JTable(tableModel);
+        eventTable.getTableHeader().setReorderingAllowed(false);
+        JScrollPane scrollPane = new JScrollPane(eventTable);
+        scrollPane.setBorder(BorderFactory.createTitledBorder("Event List"));
+        listPanel.add(scrollPane, BorderLayout.CENTER);
+        panel.add(listPanel, BorderLayout.CENTER);
+
+        // mainContentSplitPane.setRightComponent(listPanel);
+        // add(mainContentSplitPane, BorderLayout.CENTER);
     }
 
     private void styleButton(JButton button) {
