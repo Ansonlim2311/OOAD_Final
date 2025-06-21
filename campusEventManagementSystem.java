@@ -54,4 +54,8 @@ public class CampusEventManagementSystem {
     public void showParticipatePanel() {
         switchPanel("Participate Dashboard", e -> showMainPage(), new ParticipatePanel(this));
     }
+
+    public void showFeeCalculationPanel() {
+        switchPanel("Fee Calculation", e -> showMainPage(), new FeeCalculationPanel(this));
+    }
 }

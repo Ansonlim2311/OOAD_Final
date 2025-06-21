@@ -177,5 +177,4 @@ public class OrganizerPanel extends JPanel {
         button.setFont(new Font("SansSerif", Font.BOLD, 14));
         button.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
     }
-
 }
