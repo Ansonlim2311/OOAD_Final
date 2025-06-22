@@ -18,15 +18,15 @@ public class ParticipatePanel extends JPanel {
         paxSelectionPanel.setBackground(Color.WHITE);
 
         JLabel paxLabel = new JLabel("Number of pax:");
-        paxLabel.setFont(new Font("Monospaced",Font.PLAIN,19));
+        paxLabel.setFont(new Font("Monospaced",Font.BOLD,21));
 
 
-        Integer[] paxOptions = new Integer[100];
-        for (int i=0 ; i < 100; i++) paxOptions[i] = i+1;
+        Integer[] paxOptions = new Integer[50];
+        for (int i=0 ; i < 50; i++) paxOptions[i] = i+1;
 
         paxDropdown = new JComboBox<>(paxOptions);
         paxDropdown.setPreferredSize(new Dimension(160,30));
-        paxDropdown.setFont(new Font("Monospaced",Font.PLAIN,14));
+        paxDropdown.setFont(new Font("Monospaced",Font.BOLD,19));
 
         paxSelectionPanel.add(paxLabel);
         paxSelectionPanel.add(paxDropdown);
@@ -39,7 +39,7 @@ public class ParticipatePanel extends JPanel {
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 
         JPanel tableWrapper = new JPanel(new BorderLayout());
-        tableWrapper.setPreferredSize(new Dimension(1300,200));
+        tableWrapper.setPreferredSize(new Dimension(1300,650));
         tableWrapper.setBorder(BorderFactory.createTitledBorder("Event List"));
 
         EventTable model = new EventTable(eventManager.getEvents());
@@ -48,28 +48,55 @@ public class ParticipatePanel extends JPanel {
         JScrollPane scrollPane = new JScrollPane(eventTable);
         tableWrapper.add(scrollPane,BorderLayout.CENTER);
 
-        //4.Register Bar
-        JPanel registerBar = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        //4.Register Bar with 2 radio button 
+        //Border Layout for main container (register Bar) left right mostly for large section like header 
+        JPanel registerBar = new JPanel(new BorderLayout());
         registerBar.setPreferredSize(new Dimension(1300,60));
-        registerBar.setBackground(Color.RED);
+        registerBar.setBackground(Color.WHITE);
 
-        JButton registerButton = new JButton("Register");
-        registerButton.setPreferredSize(new Dimension(150,50));
-        registerButton.setBackground(new Color(204, 0, 0));
-        registerButton.setForeground(Color.PINK);
+        //left side checkbox + services label
+        //FlowLayout inside each section (Radio Panel and buttonPanel) mostlyy for buttons, form fields
+        JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
+        leftPanel.setBackground(Color.WHITE);
+
+        JLabel serviceLabel = new JLabel("Additional Services:");
+        serviceLabel.setFont(new Font("Monospaced", Font.BOLD, 23));
+
+        JCheckBox transportOption = new JCheckBox("Transportation");
+        transportOption.setFont(new Font("Monospaced",Font.BOLD,23));
+        transportOption.setBackground(Color.WHITE);
+
+        JCheckBox cateringOption = new JCheckBox("Catering Service");
+        cateringOption.setFont(new Font("Monospaced",Font.BOLD,23));
+        cateringOption.setBackground(Color.WHITE);
+
+        leftPanel.add(serviceLabel);
+        leftPanel.add(transportOption);
+        leftPanel.add(cateringOption);
+
+        //right side register buttons
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 20, 5));
+        buttonPanel.setBackground(Color.WHITE);
+
+        JButton registerButton = new JButton("Register Now");
+        registerButton.setPreferredSize(new Dimension(250,50));
+        registerButton.setBackground(new Color(150, 0, 0));
+        registerButton.setForeground(Color.WHITE);
         registerButton.setFocusPainted(false);
         registerButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        registerButton.setFont(new Font("SansSerif", Font.BOLD, 14));
-        // registerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
-        registerBar.add(registerButton);
+        registerButton.setFont(new Font("Monospaced", Font.BOLD, 21));
+
+        buttonPanel.add(registerButton);
+        registerBar.add(leftPanel,BorderLayout.WEST);
+        registerBar.add(buttonPanel,BorderLayout.EAST);
 
         //5.Message Bar
         JPanel messageBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        messageBar.setPreferredSize(new Dimension(1300,45));
-        messageBar.setBackground(Color.BLUE);
+        messageBar.setPreferredSize(new Dimension(1300,50));
+        messageBar.setBackground(Color.WHITE);
 
-        JLabel messageLabel = new JLabel("GoodMorning");
-        messageLabel.setFont(new Font("Monospaced", Font.ITALIC, 14));
+        JLabel messageLabel = new JLabel("**Each user are allowed only to register an event at each time.**");
+        messageLabel.setFont(new Font("Monospaced", Font.BOLD, 16));
         messageBar.add(messageLabel);
 
         centerPanel.add(tableWrapper);
