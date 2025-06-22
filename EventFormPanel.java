@@ -22,7 +22,7 @@ public class EventFormPanel extends JPanel {
         // Initialize components
         eventNameField = createTextField(250);
         dateField = createTextField(250);
-        dateField.setText("YYYY-MM-DD");
+        dateField.setText("DD-MM-YYYY"); // Placeholder text
         System.out.println("Date entered: " + dateField.getText());
 
 

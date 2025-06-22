@@ -1,4 +1,7 @@
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import java.awt.*;
 
 public class OrganizerPanel extends JPanel {
@@ -54,8 +57,25 @@ public class OrganizerPanel extends JPanel {
 
         // ✅ Register the handler here using the same tableModel
         addButton.addActionListener(new AddButtonHandler(formPanel, eventManager, tableModel));
-        deleteButton.addActionListener(new DeleteButtonHandler(eventTable, eventManager, tableModel));
-        updateButton.addActionListener(new UpdateButtonHandler(formPanel, eventManager, tableModel));
+        // deleteButton.addActionListener(new DeleteButtonHandler(eventTable, eventManager, tableModel));
+        // updateButton.addActionListener(new UpdateButtonHandler(formPanel, eventManager, tableModel));
+
+        eventTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedRow = eventTable.getSelectedRow();
+                    if (selectedRow >= 0) {
+                        formPanel.eventNameField.setText(eventTable.getValueAt(selectedRow, 0).toString());
+                        formPanel.dateField.setText(eventTable.getValueAt(selectedRow, 1).toString());
+                        formPanel.venue.setSelectedItem(eventTable.getValueAt(selectedRow, 2).toString());
+                        formPanel.typeevent.setSelectedItem(eventTable.getValueAt(selectedRow, 3).toString());
+                        formPanel.capacityField.setValue(Integer.parseInt(eventTable.getValueAt(selectedRow, 4).toString()));
+                        formPanel.registrationField.setValue(Double.parseDouble(eventTable.getValueAt(selectedRow, 5).toString()));
+                    }
+                }
+            }
+        });
     }
 
     private void styleButton(JButton button) {

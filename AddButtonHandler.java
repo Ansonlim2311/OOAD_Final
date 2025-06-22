@@ -51,6 +51,7 @@ public class AddButtonHandler implements ActionListener {
                 "Event Added",
                 JOptionPane.INFORMATION_MESSAGE
         );
+        Getvalue.clearForm(formPanel);
     }
 
     

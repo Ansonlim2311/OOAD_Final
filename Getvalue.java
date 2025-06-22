@@ -93,4 +93,13 @@ public class Getvalue {
 
         return true; // ✅ All validations passed
     }
+
+    public static void clearForm(EventFormPanel formPanel) {
+        formPanel.eventNameField.setText("");
+        formPanel.dateField.setText("DD-MM-YYYY");
+        formPanel.venue.setSelectedIndex(0);
+        formPanel.typeevent.setSelectedIndex(0);
+        formPanel.capacityField.setValue(1);
+        formPanel.registrationField.setValue(   1);
+    }
 }
