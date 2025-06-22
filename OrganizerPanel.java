@@ -54,8 +54,8 @@ public class OrganizerPanel extends JPanel {
 
         // ✅ Register the handler here using the same tableModel
         addButton.addActionListener(new AddButtonHandler(formPanel, eventManager, tableModel));
-        deleteButton.addActionListener(new DeleteButtonHandler(eventTable, eventManager, tableModel));
-        updateButton.addActionListener(new UpdateButtonHandler(formPanel, eventManager, tableModel));
+        //deleteButton.addActionListener(new DeleteButtonHandler(eventTable, eventManager, tableModel));
+        //updateButton.addActionListener(new UpdateButtonHandler(formPanel, eventManager, tableModel));
     }
 
     private void styleButton(JButton button) {
