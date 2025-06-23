@@ -79,12 +79,8 @@ public class ParticipatePanel extends JPanel {
         buttonPanel.setBackground(Color.WHITE);
 
         JButton registerButton = new JButton("Register Now");
-        registerButton.setPreferredSize(new Dimension(250,50));
-        registerButton.setBackground(new Color(150, 0, 0));
-        registerButton.setForeground(Color.WHITE);
-        registerButton.setFocusPainted(false);
-        registerButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        registerButton.setFont(new Font("Monospaced", Font.BOLD, 21));
+        styleButton(registerButton);
+        registerButton.addActionListener(e -> controller.showFeeCalculationPanel());
 
         buttonPanel.add(registerButton);
         registerBar.add(leftPanel,BorderLayout.WEST);
@@ -108,12 +104,12 @@ public class ParticipatePanel extends JPanel {
     }
 
     private void styleButton(JButton button) {
-        button.setPreferredSize(new Dimension(100, 35));
-        button.setBackground(new Color(204, 0, 0));
+        button.setPreferredSize(new Dimension(250,50));
+        button.setBackground(new Color(150, 0, 0));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        button.setFont(new Font("SansSerif", Font.BOLD, 14));
+        button.setFont(new Font("Monospaced", Font.BOLD, 21));
         button.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
     }
 }
