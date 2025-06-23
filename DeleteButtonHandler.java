@@ -2,9 +2,6 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class DeleteButtonHandler implements ActionListener {
-import java.awt.*;
-
-public class DeleteButtonHandler {
     private JTable eventTable;
     private EventManager eventManager;
     private EventTable eventTableModel; // This is your custom TableModel
