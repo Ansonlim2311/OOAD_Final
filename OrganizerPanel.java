@@ -57,8 +57,9 @@ public class OrganizerPanel extends JPanel {
 
         // ✅ Register the handler here using the same tableModel
         addButton.addActionListener(new AddButtonHandler(formPanel, eventManager, tableModel));
-        // deleteButton.addActionListener(new DeleteButtonHandler(eventTable, eventManager, tableModel));
-        // updateButton.addActionListener(new UpdateButtonHandler(formPanel, eventManager, tableModel));
+        deleteButton.addActionListener(new DeleteButtonHandler(formPanel,eventTable, eventManager, tableModel));
+        updateButton.addActionListener(new UpdateButtonHandler(formPanel, eventManager, tableModel, eventTable));
+
 
         eventTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -72,9 +73,18 @@ public class OrganizerPanel extends JPanel {
                         formPanel.typeevent.setSelectedItem(eventTable.getValueAt(selectedRow, 3).toString());
                         formPanel.capacityField.setValue(Integer.parseInt(eventTable.getValueAt(selectedRow, 4).toString()));
                         formPanel.registrationField.setValue(Double.parseDouble(eventTable.getValueAt(selectedRow, 5).toString()));
+
+                        addButton.setEnabled(false);
+                    }
+                    else {
+                        // Clear the form if no row is selected
+                        Getvalue.clearForm(formPanel);
+                        addButton.setEnabled(true);
                     }
                 }
             }
+
+
         });
     }
 
