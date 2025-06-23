@@ -81,7 +81,7 @@ public class ParticipatePanel extends JPanel {
         JButton registerButton = new JButton("Register Now");
         styleButton(registerButton);
         registerButton.addActionListener(e -> {
-        EventRegistrationHandler.processFromUI(eventTable, paxDropdown, transportOption, cateringOption);
+            EventRegistrationHandler.processFromUI(eventTable, paxDropdown, transportOption, cateringOption);
         });
 
         buttonPanel.add(registerButton);
@@ -103,7 +103,6 @@ public class ParticipatePanel extends JPanel {
 
         add(paxBar,BorderLayout.NORTH);
         add(centerPanel,BorderLayout.CENTER);
-
     }
 
     private void styleButton(JButton button) {

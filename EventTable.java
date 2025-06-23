@@ -19,7 +19,6 @@ public class EventTable extends AbstractTableModel{
         return columnNames.length;
     }
 
-    
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Event event = events.get(rowIndex);
@@ -42,5 +41,4 @@ public class EventTable extends AbstractTableModel{
     public Event getEventAt(int rowIndex) {
         return events.get(rowIndex);
     }
-    
 }
