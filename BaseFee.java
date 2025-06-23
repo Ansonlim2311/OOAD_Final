@@ -1,19 +1,20 @@
 public class BaseFee implements FeeComponent {
-    private final String description;
-    private final double amout;
+    private final double baseFee; 
+    private final int pax; //use final to make sure variable cant changed ice assigned
 
-    public BaseFee(String description, double amount) {
-        this.description = description;
-        this.amout = amount;
+    public BaseFee(double baseFee, int pax) {
+        this.baseFee = baseFee;
+        this.pax = pax;
+    }
+
+    @Override
+    public double getFee() {
+        return baseFee * pax;
     }
 
     @Override
     public String getDescription() {
-        return description;
+        return "Base Fee";
     }
 
-    @Override
-    public double getAmount() {
-        return amout;
-    }
 }

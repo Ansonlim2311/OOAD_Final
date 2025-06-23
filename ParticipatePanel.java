@@ -56,17 +56,17 @@ public class ParticipatePanel extends JPanel {
 
         //left side checkbox + services label
         //FlowLayout inside each section (Radio Panel and buttonPanel) mostlyy for buttons, form fields
-        JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
+        JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 30, 20));
         leftPanel.setBackground(Color.WHITE);
 
         JLabel serviceLabel = new JLabel("Additional Services:");
         serviceLabel.setFont(new Font("Monospaced", Font.BOLD, 23));
 
-        JCheckBox transportOption = new JCheckBox("Transportation");
+        JCheckBox transportOption = new JCheckBox("Transportation (RM50/p)");
         transportOption.setFont(new Font("Monospaced",Font.BOLD,23));
         transportOption.setBackground(Color.WHITE);
 
-        JCheckBox cateringOption = new JCheckBox("Catering Service");
+        JCheckBox cateringOption = new JCheckBox("Catering Service (RM50/p)");
         cateringOption.setFont(new Font("Monospaced",Font.BOLD,23));
         cateringOption.setBackground(Color.WHITE);
 
