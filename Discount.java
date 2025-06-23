@@ -1,19 +1,20 @@
 public class Discount implements FeeComponent {
-    private final String description;
-    private final double amount;
+    private final FeeComponent component;
+    private final double discountRate;
 
-    public Discount(String description, double amount) {
-        this.description = description;
-        this.amount = amount;
+    public Discount(FeeComponent component, double discountRate) {
+        this.component = component;
+        this.discountRate = discountRate;
+    }
+
+    @Override
+    public double getFee() {
+        return component.getFee() * (1 - discountRate);
     }
 
     @Override
     public String getDescription() {
-        return description;
+        return "Total After Discount (" + (discountRate * 100) + "%)";
     }
 
-    @Override
-    public double getAmount() {
-        return -amount;
-    }
 }

@@ -35,6 +35,17 @@ public class EventManager {
             System.out.println("Event with ID " + eventId + " not found for deletion.");
         }
     }
+    public Event getEventAt(int index) {
+    if (index >= 0 && index < events.size()) {
+        return events.get(index);
+        } else {
+        throw new IndexOutOfBoundsException("Invalid index for event list: " + index);
+        }
+    }
+
+    // public void deleteEvent(int eventId) {
+    //     events.removeIf(event -> event.getId() == eventId);
+    // }
 
     public void updateEvent(Event updatedEvent) {
         // Find the event by ID and update it

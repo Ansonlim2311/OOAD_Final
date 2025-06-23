@@ -38,4 +38,9 @@ public class EventTable extends AbstractTableModel{
     public String getColumnName(int column) {
         return columnNames[column];
     }
+
+    public Event getEventAt(int rowIndex) {
+        return events.get(rowIndex);
+    }
+    
 }
