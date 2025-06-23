@@ -2,6 +2,19 @@
 import javax.swing.*;
 
 public class EventRegistrationHandler {
+    // Fields + Constructor (same as before)
+    private final Event event;
+    private final int pax;
+    private final boolean transportSelected;
+    private final boolean cateringSelected;
+
+    public EventRegistrationHandler(Event event, int pax, boolean transportSelected, boolean cateringSelected){
+        this.event = event;
+        this.pax = pax;
+        this.transportSelected = transportSelected;
+        this.cateringSelected = cateringSelected;
+    }
+
     public static void processFromUI(JTable eventTable, JComboBox<Integer> paxDropdown,
                                      JCheckBox transportOption, JCheckBox cateringOption) {
         int row = eventTable.getSelectedRow();
@@ -21,18 +34,6 @@ public class EventRegistrationHandler {
         handler.processRegistration();
     }
 
-    // Fields + Constructor (same as before)
-    private final Event event;
-    private final int pax;
-    private final boolean transportSelected;
-    private final boolean cateringSelected;
-
-    public EventRegistrationHandler(Event event, int pax, boolean transportSelected, boolean cateringSelected){
-        this.event = event;
-        this.pax = pax;
-        this.transportSelected = transportSelected;
-        this.cateringSelected = cateringSelected;
-    }
 
     public void processRegistration() {
         double baseFee = event.getBaseFee();
@@ -52,5 +53,3 @@ public class EventRegistrationHandler {
         System.out.println("======================================");
     }
 }
-
-
