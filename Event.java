@@ -1,4 +1,5 @@
 public class Event {
+    private int id; // ⭐ Add this field for a unique identifier
     private String eventName;
     private String date;
     private String venue;
@@ -6,13 +7,27 @@ public class Event {
     private int capacity;
     private double baseFee;
 
-    public Event(String eventName, String date, String venue, String eventType, int capacity, double baseFee) {
+    public Event(int id, String eventName, String date, String venue, String eventType, int capacity, double baseFee) {
+        this.id = id; // Initialize the ID
         this.eventName = eventName;
         this.date = date;
         this.venue = venue;
         this.eventType = eventType;
         this.capacity = capacity;
         this.baseFee = baseFee;
+    }
+
+
+    public Event(String eventName, String date, String venue, String eventType, int capacity, double baseFee) {
+        this(0, eventName, date, venue, eventType, capacity, baseFee); // Call the main constructor with a default ID (e.g., 0)
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEventName() {
