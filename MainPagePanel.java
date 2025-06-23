@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class MainPagePanel extends JPanel {
     private JPanel content, buttonPanel, centerContent;
@@ -27,8 +26,8 @@ public class MainPagePanel extends JPanel {
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 30));
         buttonPanel.setOpaque(false);
 
-        organizerButton = createButton("Organizer", e -> controller.showOrganizerPanel());
-        participantButton = createButton("Students / Staff", e -> controller.showParticipatePanel());
+        organizerButton = CreateButton.createStyledButton("Organizer", e -> controller.showOrganizerPanel());
+        participantButton = CreateButton.createStyledButton("Students / Staff", e -> controller.showParticipatePanel());
 
         buttonPanel.add(organizerButton);
         buttonPanel.add(participantButton);
@@ -43,18 +42,5 @@ public class MainPagePanel extends JPanel {
         centerContent.add(content);
 
         add(centerContent, BorderLayout.CENTER);
-    }
-
-    private JButton createButton(String text, ActionListener action) {
-        JButton button = new JButton(text);
-        button.setFont(new Font("Monospaced", Font.BOLD, 25));
-        button.setPreferredSize(new Dimension(280, 60));
-        button.setBackground(new Color(150, 0, 0));
-        button.setForeground(Color.WHITE);
-        button.setFocusPainted(false);
-        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        button.addActionListener(action);
-
-        return button;
     }
 }

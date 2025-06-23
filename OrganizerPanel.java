@@ -41,13 +41,9 @@ public class OrganizerPanel extends JPanel {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
         buttonPanel.setBackground(Color.LIGHT_GRAY);
 
-        addButton = new JButton("Add");
-        deleteButton = new JButton("Delete");
-        updateButton = new JButton("Update");
-
-        styleButton(addButton);
-        styleButton(deleteButton);
-        styleButton(updateButton);
+        addButton = CreateButton.createStyledButton("Add", 100, 35);
+        deleteButton = CreateButton.createStyledButton("Delete", 100, 35);
+        updateButton = CreateButton.createStyledButton("Update", 100, 35);
 
         buttonPanel.add(addButton);
         buttonPanel.add(deleteButton);
@@ -83,18 +79,6 @@ public class OrganizerPanel extends JPanel {
                     }
                 }
             }
-
-
         });
-    }
-
-    private void styleButton(JButton button) {
-        button.setPreferredSize(new Dimension(100, 35));
-        button.setBackground(new Color(204, 0, 0));
-        button.setForeground(Color.WHITE);
-        button.setFocusPainted(false);
-        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        button.setFont(new Font("SansSerif", Font.BOLD, 14));
-        button.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
     }
 }

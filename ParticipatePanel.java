@@ -78,10 +78,22 @@ public class ParticipatePanel extends JPanel {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 20, 5));
         buttonPanel.setBackground(Color.WHITE);
 
-        JButton registerButton = new JButton("Register Now");
-        styleButton(registerButton);
+        JButton registerButton = CreateButton.createStyledButton("Register Now", 250, 50);
         registerButton.addActionListener(e -> {
-            EventRegistrationHandler.processFromUI(eventTable, paxDropdown, transportOption, cateringOption);
+            int row = eventTable.getSelectedRow();
+            if (row == -1) {
+                JOptionPane.showMessageDialog(null, "Please select an event.");
+                return;
+            }
+
+            Event event = ((EventTable) eventTable.getModel()).getEventAt(row); //get event at eventTable
+            int pax = (int) paxDropdown.getSelectedItem();
+            boolean transport = transportOption.isSelected();
+            boolean catering = cateringOption.isSelected();
+
+            // Do the rest using your original instance-based handler
+            EventRegistrationHandler handler = new EventRegistrationHandler(event, pax, transport, catering, controller);
+            handler.processRegistration();
         });
 
         buttonPanel.add(registerButton);
@@ -103,15 +115,5 @@ public class ParticipatePanel extends JPanel {
 
         add(paxBar,BorderLayout.NORTH);
         add(centerPanel,BorderLayout.CENTER);
-    }
-
-    private void styleButton(JButton button) {
-        button.setPreferredSize(new Dimension(250,50));
-        button.setBackground(new Color(150, 0, 0));
-        button.setForeground(Color.WHITE);
-        button.setFocusPainted(false);
-        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        button.setFont(new Font("Monospaced", Font.BOLD, 21));
-        button.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
     }
 }
