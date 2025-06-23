@@ -83,6 +83,7 @@ public class ParticipatePanel extends JPanel {
         registerButton.addActionListener(e -> {
         EventRegistrationHandler.processFromUI(eventTable, paxDropdown, transportOption, cateringOption);
         });
+
         buttonPanel.add(registerButton);
         registerBar.add(leftPanel,BorderLayout.WEST);
         registerBar.add(buttonPanel,BorderLayout.EAST);

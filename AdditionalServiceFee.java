@@ -13,7 +13,7 @@ public class AdditionalServiceFee implements FeeComponent {
     }
 
     @Override
-    public double getAmount() {
+    public double getFee() {
         return amount;
     }
 }
