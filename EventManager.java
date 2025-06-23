@@ -16,6 +16,14 @@ public class EventManager {
         events.add(event);
     }
 
+    public Event getEventAt(int index) {
+    if (index >= 0 && index < events.size()) {
+        return events.get(index);
+        } else {
+        throw new IndexOutOfBoundsException("Invalid index for event list: " + index);
+        }
+    }
+
     // public void deleteEvent(int eventId) {
     //     events.removeIf(event -> event.getId() == eventId);
     // }
