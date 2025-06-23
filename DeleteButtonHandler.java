@@ -1,3 +1,6 @@
+import javax.swing.*;
+import java.awt.*;
+
 public class DeleteButtonHandler {
     private JTable eventTable;
     private EventManager eventManager;
