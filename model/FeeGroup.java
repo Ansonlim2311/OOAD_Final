@@ -1,6 +1,9 @@
+package model;
 //create composite 
 import java.util.ArrayList;
 import java.util.List;
+
+import interfaces.FeeComponent;
 
 public class FeeGroup implements FeeComponent {
     private final List<FeeComponent> components = new ArrayList<>();

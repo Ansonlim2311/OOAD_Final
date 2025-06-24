@@ -1,5 +1,8 @@
+package model;
 import java.util.ArrayList;
 import java.util.List;
+
+import interfaces.FeeComponent;
 
 public class FeeCalculator {
     private final double baseFeePerPax;

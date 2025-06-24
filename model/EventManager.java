@@ -1,3 +1,4 @@
+package model;
 import java.util.ArrayList;
 import java.util.List;
 // import java.util.Iterator; // Good practice for manual iteration/removal, but removeIf is cleaner for simple cases.

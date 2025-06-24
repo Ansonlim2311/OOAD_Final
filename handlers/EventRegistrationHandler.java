@@ -1,3 +1,8 @@
+package handlers;
+import interfaces.RegistrationNavigator;
+import model.Event;
+import model.FeeCalculator;
+
 //create this class is to accept all needed data, perform fee calculation, show breakdown panel
 public class EventRegistrationHandler {
     // Fields + Constructor (same as before)

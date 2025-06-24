@@ -1,3 +1,6 @@
+package model;
+import interfaces.FeeComponent;
+
 public class FinalFee implements FeeComponent {
     private final FeeComponent originalComponent;
     private final FeeComponent discountedComponent;

@@ -1,3 +1,6 @@
+package model;
+import interfaces.FeeComponent;
+
 public class SubTotalFee implements FeeComponent {
     private final FeeGroup feeGroup;
 

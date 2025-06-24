@@ -1,6 +1,14 @@
+package ui;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
+
+import interfaces.FeeComponent;
+import main.CampusEventManagementSystem;
+import model.Event;
+import model.FeeCalculator;
+import util.CreateButton;
 
 public class FeeCalculationPanel extends JPanel {
     JPanel contentPanel, titlePanel, breakdownPanel, buttonPanel;

@@ -1,6 +1,17 @@
+package main;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+
+import interfaces.RegistrationNavigator;
+import model.Event;
+import model.EventManager;
+import model.FeeCalculator;
+import ui.FeeCalculationPanel;
+import ui.MainPagePanel;
+import ui.OrganizerPanel;
+import ui.ParticipatePanel;
+import ui.TopBar;
 
 public class CampusEventManagementSystem implements RegistrationNavigator {
     private JFrame frame;

@@ -1,37 +1,31 @@
+package handlers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class UpdateButtonHandler implements ActionListener {
+import model.Event;
+import model.EventManager;
+import table.EventTable;
+import ui.EventFormPanel;
+import util.Getvalue;
+
+public class AddButtonHandler implements ActionListener {
     private EventFormPanel formPanel;
     private EventManager eventManager;
     private EventTable eventTable;
-    private JTable table; // 用于获取 selectedRow
 
-    public UpdateButtonHandler(EventFormPanel formPanel, EventManager eventManager, EventTable eventTable, JTable table) {
+    public AddButtonHandler(EventFormPanel formPanel, EventManager eventManager, EventTable eventTable) {
         this.formPanel = formPanel;
         this.eventManager = eventManager;
         this.eventTable = eventTable;
-        this.table = table;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int selectedRow = table.getSelectedRow();
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(table, "Please select an event to update.", "No Selection", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
         if (!Getvalue.validateAll(formPanel)) {
             return;
         }
 
-        // 获取旧 Event 的 ID
-        Event oldEvent = eventManager.getEvents().get(selectedRow);
-        int eventId = oldEvent.getId(); // 保留原 ID
-
-        // 收集新数据
         String name = Getvalue.getEventName(formPanel);
         String date = Getvalue.getDate(formPanel);
         String venue = Getvalue.getVenue(formPanel);
@@ -39,26 +33,33 @@ public class UpdateButtonHandler implements ActionListener {
         int capacity = Getvalue.getCapacity(formPanel);
         double fee = Getvalue.getRegistrationFee(formPanel);
 
-        // 用新数据构造新 Event（保留原 ID）
-        Event updatedEvent = new Event(eventId, name, date, venue, type, capacity, fee);
-        eventManager.updateEvent(updatedEvent);
+        // Print or show dialog
+        System.out.println("Event Name: " + name);
+        System.out.println("Date: " + date);
+        System.out.println("Venue: " + venue);
+        System.out.println("Type: " + type);
+        System.out.println("Capacity: " + capacity);
+        System.out.println("Fee: RM" + fee);
 
-        // 刷新表格
+        Event newEvent = new Event(name, date, venue, type, capacity, fee);
+        eventManager.addEvent(newEvent); // <-- 确保 EventManager 有 addEvent 方法
+
+    // 通知表格数据已更新
         eventTable.fireTableDataChanged();
 
-        // 弹窗提示
         JOptionPane.showMessageDialog(formPanel,
-                "Event updated successfully:\n" +
+                "Added Event:\n" +
                 "Name: " + name + "\n" +
                 "Date: " + date + "\n" +
                 "Venue: " + venue + "\n" +
                 "Type: " + type + "\n" +
                 "Capacity: " + capacity + "\n" +
                 "Fee: RM" + fee,
-                "Event Updated",
+                "Event Added",
                 JOptionPane.INFORMATION_MESSAGE
         );
-
         Getvalue.clearForm(formPanel);
     }
+
+    
 }

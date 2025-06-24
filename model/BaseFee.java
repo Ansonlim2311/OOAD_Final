@@ -1,3 +1,6 @@
+package model;
+import interfaces.FeeComponent;
+
 public class BaseFee implements FeeComponent {
     private final double baseFee; 
     private final int pax; //use final to make sure variable cant changed ice assigned

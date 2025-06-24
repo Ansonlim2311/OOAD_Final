@@ -1,5 +1,16 @@
+package ui;
 import javax.swing.*;
+
+import handlers.EventRegistrationHandler;
+
 import java.awt.*;
+
+import interfaces.RegistrationNavigator;
+import main.CampusEventManagementSystem;
+import model.Event;
+import model.EventManager;
+import table.EventTable;
+import util.CreateButton;
 
 public class ParticipatePanel extends JPanel {
     JComboBox<Integer> paxDropdown;

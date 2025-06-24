@@ -1,4 +1,8 @@
+package table;
 import javax.swing.table.AbstractTableModel;
+
+import model.Event;
+
 import java.util.List;
 
 public class EventTable extends AbstractTableModel{

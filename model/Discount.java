@@ -1,3 +1,6 @@
+package model;
+import interfaces.FeeComponent;
+
 public class Discount implements FeeComponent {
     private final FeeComponent component;
     private final double discountRate;

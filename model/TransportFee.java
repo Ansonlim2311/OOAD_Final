@@ -1,3 +1,6 @@
+package model;
+import interfaces.FeeComponent;
+
 public class TransportFee implements FeeComponent {
     private final int pax;
 

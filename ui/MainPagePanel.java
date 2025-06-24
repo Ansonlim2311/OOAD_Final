@@ -1,4 +1,9 @@
+package ui;
 import javax.swing.*;
+
+import main.CampusEventManagementSystem;
+import util.CreateButton;
+
 import java.awt.*;
 
 public class MainPagePanel extends JPanel {
