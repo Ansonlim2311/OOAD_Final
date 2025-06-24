@@ -68,6 +68,6 @@ public class UpdateButtonHandler implements ActionListener {
                 JOptionPane.INFORMATION_MESSAGE
         );
 
-        getValue.clearForm(formPanel);
+        getValue.clearForm();
     }
 }

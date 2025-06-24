@@ -89,7 +89,7 @@ public class OrganizerPanel extends JPanel {
                     }
                     else {
                         // Clear the form if no row is selected
-                        getValue.clearForm(formPanel);
+                        getValue.clearForm();
                         addButton.setEnabled(true);
                     }
                 }

@@ -34,7 +34,7 @@ public class GetValue {
     }
 
     public double getRegistrationFee() {
-        return (Double) formPanel.registrationField.getValue();
+        return ((Number) formPanel.registrationField.getValue()).doubleValue();
     }
 
     // ✅ New method to validate all fields before submission
@@ -89,7 +89,7 @@ public class GetValue {
 
 
         // Registration Fee
-        double fee = (Double) formPanel.registrationField.getValue();
+        double fee = ((Number) formPanel.registrationField.getValue()).doubleValue();
         if (fee < 0) {
             JOptionPane.showMessageDialog(formPanel,
                     "Registration fee cannot be negative.",
@@ -101,7 +101,7 @@ public class GetValue {
         return true; // ✅ All validations passed
     }
 
-    public void clearForm(EventFormPanel formPanel) {
+    public void clearForm() {
         formPanel.eventNameField.setText("");
         formPanel.dateField.setText("DD-MM-YYYY");
         formPanel.venue.setSelectedIndex(0);

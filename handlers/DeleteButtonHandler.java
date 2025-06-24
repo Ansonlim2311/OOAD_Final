@@ -53,7 +53,7 @@ public class DeleteButtonHandler implements ActionListener {
                 JOptionPane.showMessageDialog(eventTable, "Event deleted successfully!", "Delete Success", JOptionPane.INFORMATION_MESSAGE);
 
                 // 清空表单
-                getValue.clearForm(formPanel);
+                getValue.clearForm();
 
             } catch (IndexOutOfBoundsException ex) {
                 JOptionPane.showMessageDialog(eventTable,
