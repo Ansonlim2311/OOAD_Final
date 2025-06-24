@@ -6,34 +6,39 @@ import java.time.format.DateTimeParseException;
 
 import ui.EventFormPanel;
 
-public class Getvalue {
+public class GetValue {
+    private final EventFormPanel formPanel;
 
-    public static String getEventName(EventFormPanel formPanel) {
+    public GetValue(EventFormPanel formPanel) {
+        this.formPanel = formPanel;
+    }
+
+    public String getEventName() {
         return formPanel.eventNameField.getText().trim();
     }
 
-    public static String getDate(EventFormPanel formPanel) {
+    public String getDate() {
         return formPanel.dateField.getText().trim();
     }
 
-    public static String getVenue(EventFormPanel formPanel) {
+    public String getVenue() {
         return (String) formPanel.venue.getSelectedItem();
     }
 
-    public static String getTypeEvent(EventFormPanel formPanel) {
+    public String getTypeEvent() {
         return (String) formPanel.typeevent.getSelectedItem();
     }
 
-    public static int getCapacity(EventFormPanel formPanel) {
+    public int getCapacity() {
         return (Integer) formPanel.capacityField.getValue();
     }
 
-    public static double getRegistrationFee(EventFormPanel formPanel) {
+    public double getRegistrationFee() {
         return (Double) formPanel.registrationField.getValue();
     }
 
     // ✅ New method to validate all fields before submission
-    public static boolean validateAll(EventFormPanel formPanel) {
+    public boolean validateAll() {
         // Event Name
         String name = formPanel.eventNameField.getText().trim();
         if (name.isEmpty()) {
@@ -96,7 +101,7 @@ public class Getvalue {
         return true; // ✅ All validations passed
     }
 
-    public static void clearForm(EventFormPanel formPanel) {
+    public void clearForm(EventFormPanel formPanel) {
         formPanel.eventNameField.setText("");
         formPanel.dateField.setText("DD-MM-YYYY");
         formPanel.venue.setSelectedIndex(0);

@@ -7,7 +7,7 @@ import model.Event;
 import model.EventManager;
 import table.EventTable;
 import ui.EventFormPanel;
-import util.Getvalue;
+import util.GetValue;
 
 public class AddButtonHandler implements ActionListener {
     private EventFormPanel formPanel;
@@ -22,16 +22,19 @@ public class AddButtonHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (!Getvalue.validateAll(formPanel)) {
+
+        GetValue getValue = new GetValue(formPanel);
+
+        if (!getValue.validateAll()) {
             return;
         }
 
-        String name = Getvalue.getEventName(formPanel);
-        String date = Getvalue.getDate(formPanel);
-        String venue = Getvalue.getVenue(formPanel);
-        String type = Getvalue.getTypeEvent(formPanel);
-        int capacity = Getvalue.getCapacity(formPanel);
-        double fee = Getvalue.getRegistrationFee(formPanel);
+        String name = getValue.getEventName();
+        String date = getValue.getDate();
+        String venue = getValue.getVenue();
+        String type = getValue.getTypeEvent();
+        int capacity = getValue.getCapacity();
+        double fee = getValue.getRegistrationFee();
 
         // Print or show dialog
         System.out.println("Event Name: " + name);
@@ -42,9 +45,7 @@ public class AddButtonHandler implements ActionListener {
         System.out.println("Fee: RM" + fee);
 
         Event newEvent = new Event(name, date, venue, type, capacity, fee);
-        eventManager.addEvent(newEvent); // <-- 确保 EventManager 有 addEvent 方法
-
-    // 通知表格数据已更新
+        eventManager.addEvent(newEvent); 
         eventTable.fireTableDataChanged();
 
         JOptionPane.showMessageDialog(formPanel,
@@ -58,7 +59,7 @@ public class AddButtonHandler implements ActionListener {
                 "Event Added",
                 JOptionPane.INFORMATION_MESSAGE
         );
-        Getvalue.clearForm(formPanel);
+        getValue.clearForm(formPanel);
     }
 
     

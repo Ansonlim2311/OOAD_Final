@@ -10,7 +10,7 @@ import main.CampusEventManagementSystem;
 import model.EventManager;
 import table.EventTable;
 import util.CreateButton;
-import util.Getvalue;
+import util.GetValue;
 
 import java.awt.*;
 
@@ -74,6 +74,7 @@ public class OrganizerPanel extends JPanel {
         eventTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
+                GetValue getValue = new GetValue(formPanel);
                 if (!e.getValueIsAdjusting()) {
                     int selectedRow = eventTable.getSelectedRow();
                     if (selectedRow >= 0) {
@@ -88,7 +89,7 @@ public class OrganizerPanel extends JPanel {
                     }
                     else {
                         // Clear the form if no row is selected
-                        Getvalue.clearForm(formPanel);
+                        getValue.clearForm(formPanel);
                         addButton.setEnabled(true);
                     }
                 }
