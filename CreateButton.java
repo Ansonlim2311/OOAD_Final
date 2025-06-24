@@ -23,7 +23,7 @@ public class CreateButton {
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        button.setFont(new Font("Monospaced", Font.BOLD, 21));
+        button.setFont(new Font("Monospaced", Font.BOLD, 24));
         button.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
         
         return button;

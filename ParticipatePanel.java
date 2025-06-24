@@ -43,10 +43,14 @@ public class ParticipatePanel extends JPanel {
         JPanel tableWrapper = new JPanel(new BorderLayout());
         tableWrapper.setPreferredSize(new Dimension(1300,650));
         tableWrapper.setBorder(BorderFactory.createTitledBorder("Event List"));
+        tableWrapper.setFont(new Font("Monospaced", Font.BOLD, 22));
 
         EventTable model = new EventTable(eventManager.getEvents());
         eventTable = new JTable(model);
+        eventTable.setFont(new Font("Monospaced", Font.BOLD, 22));
+        eventTable.setRowHeight(28);
         eventTable.getTableHeader().setReorderingAllowed(false);
+        eventTable.getTableHeader().setFont(new Font("Monospaced", Font.BOLD, 24));
         JScrollPane scrollPane = new JScrollPane(eventTable);
         tableWrapper.add(scrollPane,BorderLayout.CENTER);
 

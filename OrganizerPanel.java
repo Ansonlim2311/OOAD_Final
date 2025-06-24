@@ -14,7 +14,7 @@ public class OrganizerPanel extends JPanel {
 
         // -------- Split Pane --------
         JSplitPane mainContentSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-        mainContentSplitPane.setDividerLocation(400);
+        mainContentSplitPane.setDividerLocation(320);
         mainContentSplitPane.setDividerSize(5);
         mainContentSplitPane.setContinuousLayout(true);
 
@@ -29,7 +29,10 @@ public class OrganizerPanel extends JPanel {
 
         EventTable tableModel = new EventTable(eventManager.getEvents()); // ✅ only here
         JTable eventTable = new JTable(tableModel);
+        eventTable.setFont(new Font("Monospaced", Font.BOLD, 22));
+        eventTable.setRowHeight(28);
         eventTable.getTableHeader().setReorderingAllowed(false);
+        eventTable.getTableHeader().setFont(new Font("Monospaced", Font.BOLD, 20));
         JScrollPane scrollPane = new JScrollPane(eventTable);
         scrollPane.setBorder(BorderFactory.createTitledBorder("Event List"));
         listPanel.add(scrollPane, BorderLayout.CENTER);

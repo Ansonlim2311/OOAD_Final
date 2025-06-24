@@ -14,6 +14,6 @@ public class FinalFee implements FeeComponent {
 
     @Override
     public String getDescription() {
-        return "Total Amout (After Discount)";
+        return "Total Amout After Discount";
     }
 }
