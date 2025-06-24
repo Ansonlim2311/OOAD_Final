@@ -4,15 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CreateRow {
+    JPanel header, row;
+    JLabel leftLabel, rightLabel, nameLabel, valueLabel;
         public JPanel createHeaderRow(String left, String right) {
-        JPanel header = new JPanel(new BorderLayout());
+        header = new JPanel(new BorderLayout());
         header.setMaximumSize(new Dimension(1000, 100));
         header.setBackground(new Color(230, 230, 230));
 
-        JLabel leftLabel = new JLabel(left);
+        leftLabel = new JLabel(left);
         leftLabel.setFont(new Font("Monospaced", Font.BOLD, 40));
 
-        JLabel rightLabel = new JLabel(right);
+        rightLabel = new JLabel(right);
         rightLabel.setFont(new Font("Monospaced", Font.BOLD, 40));
         rightLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -24,14 +26,14 @@ public class CreateRow {
     }
 
     public JPanel createRow(String label, double value) {
-        JPanel row = new JPanel(new BorderLayout());
+        row = new JPanel(new BorderLayout());
         row.setMaximumSize(new Dimension(1000, 100));
         row.setBackground(Color.WHITE);
 
-        JLabel nameLabel = new JLabel(label);
+        nameLabel = new JLabel(label);
         nameLabel.setFont(new Font("Monospaced", Font.PLAIN, 30));
 
-        JLabel valueLabel = new JLabel(String.format("%.2f", value));
+        valueLabel = new JLabel(String.format("%.2f", value));
         valueLabel.setFont(new Font("Monospaced", Font.BOLD, 30));
         valueLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
