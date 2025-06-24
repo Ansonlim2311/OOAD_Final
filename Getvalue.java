@@ -1,4 +1,8 @@
 import javax.swing.JOptionPane;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 
 public class Getvalue {
 
@@ -36,25 +40,25 @@ public class Getvalue {
         }
 
         // Date: format = d-M-yyyy (accepts 6-6-2025)
-        // String dateText = formPanel.dateField.getText().trim();
-        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
-        // try {
-        //     LocalDate date = LocalDate.parse(dateText, formatter);
+        String dateText = formPanel.dateField.getText().trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
+        try {
+            LocalDate date = LocalDate.parse(dateText, formatter);
 
-        //     // Check valid day and month range (redundant here since LocalDate handles it)
-        //     int month = date.getMonthValue();
-        //     int day = date.getDayOfMonth();
-        //     if (month > 12 || day > 31) {
-        //         throw new DateTimeParseException("Invalid month/day", dateText, 0);
-        //     }
+            // Check valid day and month range (redundant here since LocalDate handles it)
+            int month = date.getMonthValue();
+            int day = date.getDayOfMonth();
+            if (month > 12 || day > 31) {
+                throw new DateTimeParseException("Invalid month/day", dateText, 0);
+            }
 
-        // } catch (DateTimeParseException e) {
-        //     JOptionPane.showMessageDialog(formPanel,
-        //             "Date must be valid and in format (dd-MM-yyyy), e.g. 6-6-2025.",
-        //             "Input Error",
-        //             JOptionPane.WARNING_MESSAGE);
-        //     return false;
-        // }
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(formPanel,
+                    "Date must be valid and in format (dd-MM-yyyy), e.g. 6-6-2025.",
+                    "Input Error",
+                    JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
 
         // Venue
         String venue = (String) formPanel.venue.getSelectedItem();
