@@ -10,6 +10,8 @@ public class FeeCalculator {
     private final boolean transportSelected;
     private final boolean cateringSelected;
     private final FeeGroup feeGroup;
+    private FeeComponent subTotal, discount, finalFee;
+    private List<FeeComponent> allFeeComponents;
 
     public FeeCalculator(double baseFeePerPax, int pax, boolean transportSelected, boolean cateringSelected){
         this.baseFeePerPax = baseFeePerPax;
@@ -39,11 +41,11 @@ public class FeeCalculator {
     }
 
     public List<FeeComponent> getDetailedFeeComponent() {
-        List<FeeComponent> allFeeComponents = new ArrayList<>(feeGroup.getComponents());
+        allFeeComponents = new ArrayList<>(feeGroup.getComponents());
 
-        FeeComponent subTotal = new SubTotalFee(feeGroup);
-        FeeComponent discount = new Discount(feeGroup, 0.05);
-        FeeComponent finalFee = new FinalFee(subTotal, discount);
+        subTotal = new SubTotalFee(feeGroup);
+        discount = new Discount(feeGroup, 0.05);
+        finalFee = new FinalFee(subTotal, discount);
 
         allFeeComponents.add(subTotal);
         allFeeComponents.add(discount);

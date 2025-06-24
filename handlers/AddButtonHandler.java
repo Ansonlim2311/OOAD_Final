@@ -13,6 +13,11 @@ public class AddButtonHandler implements ActionListener {
     private EventFormPanel formPanel;
     private EventManager eventManager;
     private EventTable eventTable;
+    private String name, date, venue, type;
+    private int capacity;
+    private double fee;
+    private GetValue getValue;
+    private Event newEvent;
 
     public AddButtonHandler(EventFormPanel formPanel, EventManager eventManager, EventTable eventTable) {
         this.formPanel = formPanel;
@@ -23,18 +28,18 @@ public class AddButtonHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        GetValue getValue = new GetValue(formPanel);
+        getValue = new GetValue(formPanel);
 
         if (!getValue.validateAll()) {
             return;
         }
 
-        String name = getValue.getEventName();
-        String date = getValue.getDate();
-        String venue = getValue.getVenue();
-        String type = getValue.getTypeEvent();
-        int capacity = getValue.getCapacity();
-        double fee = getValue.getRegistrationFee();
+        name = getValue.getEventName();
+        date = getValue.getDate();
+        venue = getValue.getVenue();
+        type = getValue.getTypeEvent();
+        capacity = getValue.getCapacity();
+        fee = getValue.getRegistrationFee();
 
         // Print or show dialog
         System.out.println("Event Name: " + name);
@@ -44,7 +49,7 @@ public class AddButtonHandler implements ActionListener {
         System.out.println("Capacity: " + capacity);
         System.out.println("Fee: RM" + fee);
 
-        Event newEvent = new Event(name, date, venue, type, capacity, fee);
+        newEvent = new Event(name, date, venue, type, capacity, fee);
         eventManager.addEvent(newEvent); 
         eventTable.fireTableDataChanged();
 
@@ -61,6 +66,4 @@ public class AddButtonHandler implements ActionListener {
         );
         getValue.clearForm();
     }
-
-    
 }

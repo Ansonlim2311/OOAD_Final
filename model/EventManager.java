@@ -6,6 +6,8 @@ import java.util.List;
 public class EventManager {
     private List<Event> events;
     private int nextEventId = 1; // For assigning unique IDs to new events
+    private boolean removed;
+    private Event existingEvent;
 
     public EventManager() {
         events = new ArrayList<>();
@@ -29,7 +31,7 @@ public class EventManager {
     // ⭐ Recommended: This method takes an eventId (int) and removes the matching event.
     public void deleteEvent(int eventId) {
         // Using removeIf is concise and efficient for Java 8+
-        boolean removed = events.removeIf(event -> event.getId() == eventId);
+        removed = events.removeIf(event -> event.getId() == eventId);
         if (removed) {
             System.out.println("Event with ID " + eventId + " deleted successfully.");
         } else {
@@ -44,14 +46,10 @@ public class EventManager {
         }
     }
 
-    // public void deleteEvent(int eventId) {
-    //     events.removeIf(event -> event.getId() == eventId);
-    // }
-
     public void updateEvent(Event updatedEvent) {
         // Find the event by ID and update it
         for (int i = 0; i < events.size(); i++) {
-            Event existingEvent = events.get(i);
+            existingEvent = events.get(i);
             if (existingEvent.getId() == updatedEvent.getId()) {
                 events.set(i, updatedEvent);
                 System.out.println("Event with ID " + updatedEvent.getId() + " updated successfully.");

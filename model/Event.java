@@ -1,6 +1,6 @@
 package model;
 public class Event {
-    private int id; // ⭐ Add this field for a unique identifier
+    private int id; // Add this field for a unique identifier
     private String eventName;
     private String date;
     private String venue;

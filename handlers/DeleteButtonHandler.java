@@ -13,10 +13,12 @@ public class DeleteButtonHandler implements ActionListener {
     private JTable eventTable;
     private EventManager eventManager;
     private EventTable eventTableModel; // This is your custom TableModel
-    private EventFormPanel formPanel;   // ✅ 你忘了加这个成员变量
+    private EventFormPanel formPanel;
+    private GetValue getValue;
+    private int selectedRow, confirm;
 
     public DeleteButtonHandler(EventFormPanel formPanel, JTable eventTable, EventManager eventManager, EventTable eventTableModel) {
-        this.formPanel = formPanel; // ✅ 现在不会 error 了
+        this.formPanel = formPanel;
         this.eventTable = eventTable;
         this.eventManager = eventManager;
         this.eventTableModel = eventTableModel;
@@ -24,8 +26,8 @@ public class DeleteButtonHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        GetValue getValue = new GetValue(formPanel);
-        int selectedRow = eventTable.getSelectedRow();
+        getValue = new GetValue(formPanel);
+        selectedRow = eventTable.getSelectedRow();
 
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(eventTable,
@@ -35,7 +37,7 @@ public class DeleteButtonHandler implements ActionListener {
             return;
         }
 
-        int confirm = JOptionPane.showConfirmDialog(eventTable,
+        confirm = JOptionPane.showConfirmDialog(eventTable,
                 "Are you sure you want to delete the selected event?",
                 "Confirm Delete",
                 JOptionPane.YES_NO_OPTION);

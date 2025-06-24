@@ -8,6 +8,7 @@ import java.util.List;
 public class EventTable extends AbstractTableModel{
     private final String[] columnNames = {"Event Name", "Date", "Venue", "Event Type", "Capacity", "Base Fee"};
     private final List<Event> events;
+    private Event event;
 
     public EventTable(List<Event> events) {
         this.events = events;
@@ -25,7 +26,7 @@ public class EventTable extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Event event = events.get(rowIndex);
+        event = events.get(rowIndex);
         return switch (columnIndex) {
             case 0 -> event.getEventName();
             case 1 -> event.getDate();

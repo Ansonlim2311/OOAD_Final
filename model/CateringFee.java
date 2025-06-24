@@ -16,6 +16,6 @@ public class CateringFee implements FeeComponent {
 
     @Override
     public String getDescription() {
-        return "Catering Fee" ;
+        return "Catering Fee";
     }
 }
