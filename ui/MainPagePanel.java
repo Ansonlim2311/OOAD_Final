@@ -10,6 +10,7 @@ public class MainPagePanel extends JPanel {
     private JPanel content, buttonPanel, centerContent;
     private JLabel titleLabel, subtitleLabel;
     private JButton organizerButton, participantButton;
+    CreateButton buttonCreator = new CreateButton();
 
     public MainPagePanel(CampusEventManagementSystem controller) {
         setLayout(new BorderLayout());
@@ -31,8 +32,8 @@ public class MainPagePanel extends JPanel {
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 30));
         buttonPanel.setOpaque(false);
 
-        organizerButton = CreateButton.createStyledButton("Organizer", e -> controller.showOrganizerPanel());
-        participantButton = CreateButton.createStyledButton("Students / Staff", e -> controller.showParticipatePanel());
+        organizerButton = buttonCreator.createStyledButton("Organizer", e -> controller.showOrganizerPanel());
+        participantButton = buttonCreator.createStyledButton("Students / Staff", e -> controller.showParticipatePanel());
 
         buttonPanel.add(organizerButton);
         buttonPanel.add(participantButton);

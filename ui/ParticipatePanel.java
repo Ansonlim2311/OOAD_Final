@@ -15,6 +15,7 @@ import util.CreateButton;
 public class ParticipatePanel extends JPanel {
     JComboBox<Integer> paxDropdown;
     JTable eventTable;
+    CreateButton buttonCreator = new CreateButton();
 
     public ParticipatePanel(CampusEventManagementSystem controller, EventManager eventManager) {
         setLayout(new BorderLayout());
@@ -95,7 +96,7 @@ public class ParticipatePanel extends JPanel {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 20, 5));
         buttonPanel.setBackground(Color.WHITE);
 
-        JButton registerButton = CreateButton.createStyledButton("Register Now", 250, 50);
+        JButton registerButton = buttonCreator.createStyledButton("Register Now", 250, 50);
         registerButton.addActionListener(e -> {
             int row = eventTable.getSelectedRow();
             if (row == -1) {

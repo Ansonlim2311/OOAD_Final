@@ -17,6 +17,7 @@ import java.awt.*;
 public class OrganizerPanel extends JPanel {
     private JButton addButton, deleteButton, updateButton;
     private EventFormPanel formPanel;
+    CreateButton buttonCreator = new CreateButton();
 
     public OrganizerPanel(CampusEventManagementSystem controller, EventManager eventManager) {
         setLayout(new BorderLayout());
@@ -54,9 +55,9 @@ public class OrganizerPanel extends JPanel {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
         buttonPanel.setBackground(Color.LIGHT_GRAY);
 
-        addButton = CreateButton.createStyledButton("Add", 100, 35);
-        deleteButton = CreateButton.createStyledButton("Delete", 100, 35);
-        updateButton = CreateButton.createStyledButton("Update", 100, 35);
+        addButton = buttonCreator.createStyledButton("Add", 100, 35);
+        deleteButton = buttonCreator.createStyledButton("Delete", 100, 35);
+        updateButton = buttonCreator.createStyledButton("Update", 100, 35);
 
         buttonPanel.add(addButton);
         buttonPanel.add(deleteButton);
