@@ -22,8 +22,10 @@ public class ParticipatePanel extends JPanel {
 
 
         Integer[] paxOptions = new Integer[50];
-        for (int i=0 ; i < 50; i++) paxOptions[i] = i+1;
-
+        for (int i=0 ; i < 50; i++) { 
+            paxOptions[i] = i+1;
+        }
+        
         paxDropdown = new JComboBox<>(paxOptions);
         paxDropdown.setPreferredSize(new Dimension(160,30));
         paxDropdown.setFont(new Font("Monospaced",Font.BOLD,19));

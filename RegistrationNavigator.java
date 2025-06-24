@@ -1,3 +1,3 @@
 public interface RegistrationNavigator {
-    void nagivateToFeePanel(Event event, FeeBreakdown breakdown);
+    void nagivateToFeePanel(Event event, FeeCalculator breakdownFee);
 }

@@ -51,13 +51,13 @@ public class CampusEventManagementSystem implements RegistrationNavigator {
         switchPanel("Registration System", e -> showMainPage(), new ParticipatePanel(this, eventManager));
     }
     
-    public void showFeeCalculationPanel(Event event, FeeBreakdown breakdown) {
-        switchPanel("Fee Calculation", e -> showParticipatePanel(), new FeeCalculationPanel(this));
+    public void showFeeCalculationPanel(Event event, FeeCalculator feeBreakDown) {
+        switchPanel("Fee Calculation", e -> showParticipatePanel(), new FeeCalculationPanel(this, event, feeBreakDown));
     }
     
     @Override
-    public void nagivateToFeePanel(Event event, FeeBreakdown breakdown) {
-        showFeeCalculationPanel(event, breakdown);
+    public void nagivateToFeePanel(Event event, FeeCalculator feeBreakDown) {
+        showFeeCalculationPanel(event, feeBreakDown);
     }
     
     public static void main(String[] args) {

@@ -16,5 +16,4 @@ public class BaseFee implements FeeComponent {
     public String getDescription() {
         return "Base Fee";
     }
-
 }

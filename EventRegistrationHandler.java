@@ -18,20 +18,8 @@ public class EventRegistrationHandler {
     public void processRegistration() {
         double baseFee = event.getBaseFee();
 
-        FeeCalculator calculator = new FeeCalculator(baseFee, pax, transportSelected, cateringSelected);
-        FeeBreakdown result = calculator.calculate();
+        FeeCalculator feeBreakDown = new FeeCalculator(baseFee, pax, transportSelected, cateringSelected);
 
-        navigator.nagivateToFeePanel(event, result);
-
-        // Print results
-        System.out.println("===== Event Registration Summary =====");
-        System.out.println("Event Name: " + event.getEventName()); //getter and setter
-        System.out.println("Base Fee (RM): " + result.baseTotal);
-        System.out.println("Transportation Fee (RM): " + result.transportFee);
-        System.out.println("Catering Fee (RM): " + result.cateringFee);
-        System.out.println("Subtotal (RM): " + result.totalBeforeDiscount);
-        System.out.println("Discount (5%): -RM" + result.discount);
-        System.out.println("Total Amount (RM): " + result.finalAmount);
-        System.out.println("======================================");
+        navigator.nagivateToFeePanel(event, feeBreakDown);
     }
 }

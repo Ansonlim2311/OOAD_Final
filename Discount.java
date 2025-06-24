@@ -9,7 +9,7 @@ public class Discount implements FeeComponent {
 
     @Override
     public double getFee() {
-        return component.getFee() * (1 - discountRate);
+        return component.getFee() * (discountRate);
     }
 
     @Override

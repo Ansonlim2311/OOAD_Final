@@ -1,32 +1,51 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class FeeCalculator {
     private final double baseFeePerPax;
     private final int pax;
     private final boolean transportSelected;
     private final boolean cateringSelected;
+    private final FeeGroup feeGroup;
 
     public FeeCalculator(double baseFeePerPax, int pax, boolean transportSelected, boolean cateringSelected){
         this.baseFeePerPax = baseFeePerPax;
         this.pax = pax;
         this.transportSelected = transportSelected;
         this.cateringSelected = cateringSelected;
+        this.feeGroup = new FeeGroup();
+        setFeeGroup();
     }
 
-    public FeeBreakdown calculate() {
-        FeeGroup group = new FeeGroup();
-        group.add(new BaseFee(baseFeePerPax, pax));
+    private void setFeeGroup() {
+        feeGroup.add(new BaseFee(baseFeePerPax, pax));
+        if (transportSelected) {
+            feeGroup.add(new TransportFee(pax));
+        } else {
+            feeGroup.add(new TransportFee(0));
+        }
+        if (cateringSelected) {
+            feeGroup.add(new CateringFee(pax));
+        } else {
+            feeGroup.add(new CateringFee(0));
+        }
+    }
 
-        if (transportSelected) group.add(new TransportFee(pax));
-        if (cateringSelected) group.add(new CateringFee(pax));
+    public FeeGroup getFeeGroup() {
+        return feeGroup;
+    }
 
-        double baseTotal = baseFeePerPax * pax;
-        double transportFee = transportSelected ? 50 * pax : 0;
-        double cateringFee = cateringSelected ? 50 * pax : 0;
-        double totalBeforeDiscount = baseTotal + transportFee + cateringFee;
-        double discount = totalBeforeDiscount * 0.05;
-        double finalAmount = totalBeforeDiscount - discount;
+    public List<FeeComponent> getDetailedFeeComponent() {
+        List<FeeComponent> allFeeComponents = new ArrayList<>(feeGroup.getComponents());
 
-        return new FeeBreakdown(baseFeePerPax, baseTotal, transportFee, cateringFee,
-                                totalBeforeDiscount, discount, finalAmount);
+        FeeComponent subTotal = new SubTotalFee(feeGroup);
+        FeeComponent discount = new Discount(feeGroup, 0.05);
+        FeeComponent finalFee = new FinalFee(subTotal, discount);
+
+        allFeeComponents.add(subTotal);
+        allFeeComponents.add(discount);
+        allFeeComponents.add(finalFee);
+
+        return allFeeComponents;
     }
 }
-
