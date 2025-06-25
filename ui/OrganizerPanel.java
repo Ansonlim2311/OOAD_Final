@@ -10,14 +10,15 @@ import main.CampusEventManagementSystem;
 import model.EventManager;
 import table.EventTable;
 import util.CreateButton;
-import util.GetValue;
+import util.FormDataExtractor;
 
 import java.awt.*;
 
 public class OrganizerPanel extends JPanel {
     private JButton addButton, deleteButton, updateButton;
     private EventFormPanel formPanel;
-    CreateButton buttonCreator = new CreateButton();
+    private FormDataExtractor data;
+    private CreateButton buttonCreator = new CreateButton();
 
     public OrganizerPanel(CampusEventManagementSystem controller, EventManager eventManager) {
         setLayout(new BorderLayout());
@@ -74,7 +75,7 @@ public class OrganizerPanel extends JPanel {
         eventTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                GetValue getValue = new GetValue(formPanel);
+                data = new FormDataExtractor(formPanel);
                 if (!e.getValueIsAdjusting()) {
                     int selectedRow = eventTable.getSelectedRow();
                     if (selectedRow >= 0) {
@@ -89,7 +90,7 @@ public class OrganizerPanel extends JPanel {
                     }
                     else {
                         // Clear the form if no row is selected
-                        getValue.clearForm();
+                        data.clearForm();
                         addButton.setEnabled(true);
                     }
                 }

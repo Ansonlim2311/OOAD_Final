@@ -7,14 +7,16 @@ import model.Event;
 import model.EventManager;
 import table.EventTable;
 import ui.EventFormPanel;
-import util.GetValue;
+import util.FormDataExtractor;
+import util.FormValidator;
 
 public class UpdateButtonHandler implements ActionListener {
     private EventFormPanel formPanel;
     private EventManager eventManager;
     private EventTable eventTable;
     private JTable table; // 用于获取 selectedRow
-    private GetValue getValue;
+    private FormDataExtractor data;
+    private FormValidator validator;
     private int selectedRow, eventId, capacity;
     private String name, date, venue, type;
     private double fee;
@@ -29,7 +31,8 @@ public class UpdateButtonHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        getValue = new GetValue(formPanel);
+        data = new FormDataExtractor(formPanel);
+        validator = new FormValidator(data, formPanel);
         selectedRow = table.getSelectedRow();
 
         if (selectedRow == -1) {
@@ -37,7 +40,7 @@ public class UpdateButtonHandler implements ActionListener {
             return;
         }
 
-        if (!getValue.validateAll()) {
+        if (!validator.validateAll()) {
             return;
         }
 
@@ -46,12 +49,12 @@ public class UpdateButtonHandler implements ActionListener {
         eventId = oldEvent.getId(); // 保留原 ID
 
         // 收集新数据
-        name = getValue.getEventName();
-        date = getValue.getDate();
-        venue = getValue.getVenue();
-        type = getValue.getTypeEvent();
-        capacity = getValue.getCapacity();
-        fee = getValue.getRegistrationFee();
+        name = data.getEventName();
+        date = data.getDate();
+        venue = data.getVenue();
+        type = data.getTypeEvent();
+        capacity = data.getCapacity();
+        fee = data.getRegistrationFee();
 
         // 用新数据构造新 Event（保留原 ID）
         updatedEvent = new Event(eventId, name, date, venue, type, capacity, fee);
@@ -73,6 +76,6 @@ public class UpdateButtonHandler implements ActionListener {
                 JOptionPane.INFORMATION_MESSAGE
         );
 
-        getValue.clearForm();
+        data.clearForm();
     }
 }

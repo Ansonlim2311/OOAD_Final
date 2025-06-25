@@ -12,12 +12,16 @@ import ui.MainPagePanel;
 import ui.OrganizerPanel;
 import ui.ParticipatePanel;
 import ui.TopBar;
+import util.CsvWriter;
+import util.CsvReader;
 
 public class CampusEventManagementSystem implements RegistrationNavigator {
     private JFrame frame;
     private JPanel container;
     private TopBar topBar;
-    private EventManager eventManager = new EventManager();
+    private CsvReader fileReader = new CsvReader("events.csv");
+    private CsvWriter fileWriter = new CsvWriter("events.csv");
+    private EventManager eventManager = new EventManager(fileReader, fileWriter);
    
     private void mainPageUI() {
         frame = new JFrame("Campus Event Management System");

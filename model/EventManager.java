@@ -1,19 +1,28 @@
 package model;
 import java.util.ArrayList;
 import java.util.List;
-// import java.util.Iterator; // Good practice for manual iteration/removal, but removeIf is cleaner for simple cases.
+import util.CsvReader;
+import util.CsvWriter;
 
 public class EventManager {
     private List<Event> events;
     private int nextEventId = 1; // For assigning unique IDs to new events
     private boolean removed;
     private Event existingEvent;
+    private CsvReader fileReader;
+    private CsvWriter fileWriter;
 
-    public EventManager() {
+    public EventManager(CsvReader fileReader, CsvWriter fileWriter) {
         events = new ArrayList<>();
-        // Optional: Add some dummy data with IDs for testing
-        addEvent(new Event("Java Workshop", "2025-07-10", "CNMX 1001", "Workshops", 50, 150.00));
-        addEvent(new Event("AI Conference", "2025-08-01", "Stadium", "Cultural Events", 200, 500.00));
+        this.fileReader = fileReader;
+        this.fileWriter = fileWriter;
+        this.events = new ArrayList<>(fileReader.loadEvents());
+
+        for (Event e : events) {
+            if (e.getId() >= nextEventId) {
+                nextEventId = e.getId() + 1;
+            }
+        }
     }
 
     public List<Event> getEvents() {
@@ -26,9 +35,10 @@ public class EventManager {
             event.setId(nextEventId++);
         }
         events.add(event);
+        fileWriter.appendEvent(event);
     }
 
-    // ⭐ Recommended: This method takes an eventId (int) and removes the matching event.
+    // This method takes an eventId (int) and removes the matching event.
     public void deleteEvent(int eventId) {
         // Using removeIf is concise and efficient for Java 8+
         removed = events.removeIf(event -> event.getId() == eventId);
@@ -58,5 +68,4 @@ public class EventManager {
         }
         System.out.println("Event with ID " + updatedEvent.getId() + " not found for update.");
     }
-
 }

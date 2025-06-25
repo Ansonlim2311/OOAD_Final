@@ -7,7 +7,8 @@ import model.Event;
 import model.EventManager;
 import table.EventTable;
 import ui.EventFormPanel;
-import util.GetValue;
+import util.FormDataExtractor;
+import util.FormValidator;
 
 public class AddButtonHandler implements ActionListener {
     private EventFormPanel formPanel;
@@ -16,7 +17,8 @@ public class AddButtonHandler implements ActionListener {
     private String name, date, venue, type;
     private int capacity;
     private double fee;
-    private GetValue getValue;
+    private FormDataExtractor data;
+    private FormValidator validator;
     private Event newEvent;
 
     public AddButtonHandler(EventFormPanel formPanel, EventManager eventManager, EventTable eventTable) {
@@ -27,19 +29,19 @@ public class AddButtonHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        data = new FormDataExtractor(formPanel);
+        validator = new FormValidator(data, formPanel);
 
-        getValue = new GetValue(formPanel);
-
-        if (!getValue.validateAll()) {
+        if (!validator.validateAll()) {
             return;
         }
 
-        name = getValue.getEventName();
-        date = getValue.getDate();
-        venue = getValue.getVenue();
-        type = getValue.getTypeEvent();
-        capacity = getValue.getCapacity();
-        fee = getValue.getRegistrationFee();
+        name = data.getEventName();
+        date = data.getDate();
+        venue = data.getVenue();
+        type = data.getTypeEvent();
+        capacity = data.getCapacity();
+        fee = data.getRegistrationFee();
 
         // Print or show dialog
         System.out.println("Event Name: " + name);
@@ -64,6 +66,6 @@ public class AddButtonHandler implements ActionListener {
                 "Event Added",
                 JOptionPane.INFORMATION_MESSAGE
         );
-        getValue.clearForm();
+        data.clearForm();
     }
 }
