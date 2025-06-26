@@ -11,7 +11,9 @@ import java.util.List;
 
 public class CsvReader {
     private final String filePath;
-    private String line;
+    private String line, name, date, venue, type;
+    private int id, capacity;
+    private double fee;
 
     public CsvReader(String filePath) {
         this.filePath = filePath;
@@ -29,13 +31,13 @@ public class CsvReader {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length == 7) {
-                    int id = Integer.parseInt(parts[0]);
-                    String name = parts[1];
-                    String date = parts[2];
-                    String venue = parts[3];
-                    String type = parts[4];
-                    int capacity = Integer.parseInt(parts[5]);
-                    double fee = Double.parseDouble(parts[6]);
+                    id = Integer.parseInt(parts[0]);
+                    name = parts[1];
+                    date = parts[2];
+                    venue = parts[3];
+                    type = parts[4];
+                    capacity = Integer.parseInt(parts[5]);
+                    fee = Double.parseDouble(parts[6]);
 
                     events.add(new Event(id, name, date, venue, type, capacity, fee));
                 }

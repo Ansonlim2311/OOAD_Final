@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class CsvWriter {
     private final String filePath;
+    private BufferedWriter writer;
 
     public CsvWriter(String filePath) {
         this.filePath = filePath;
@@ -16,7 +17,7 @@ public class CsvWriter {
 
     public void appendEvent(Event event) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true));
+            writer = new BufferedWriter(new FileWriter(filePath, true));
             writer.write(formatEvent(event));
             writer.newLine();
             writer.close();
@@ -27,7 +28,7 @@ public class CsvWriter {
 
     public void updateCsv(List<Event> events) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+            writer = new BufferedWriter(new FileWriter(filePath));
             for (Event e : events) {
                 writer.write(formatEvent(e));
                 writer.newLine();

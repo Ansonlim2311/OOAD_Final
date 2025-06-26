@@ -1,4 +1,5 @@
 package handlers;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -42,14 +43,6 @@ public class AddButtonHandler implements ActionListener {
         type = data.getTypeEvent();
         capacity = data.getCapacity();
         fee = data.getRegistrationFee();
-
-        // Print or show dialog
-        System.out.println("Event Name: " + name);
-        System.out.println("Date: " + date);
-        System.out.println("Venue: " + venue);
-        System.out.println("Type: " + type);
-        System.out.println("Capacity: " + capacity);
-        System.out.println("Fee: RM" + fee);
 
         newEvent = new Event(name, date, venue, type, capacity, fee);
         eventManager.addEvent(newEvent); 

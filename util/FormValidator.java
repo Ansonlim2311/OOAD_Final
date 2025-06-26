@@ -1,7 +1,6 @@
 package util;
 
 import javax.swing.*;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -18,7 +17,7 @@ public class FormValidator {
         this.parentComponent = parentComponent;
     }
 
-    // ✅ New method to validate all fields before submission
+    // method to validate all fields before submission
     public boolean validateAll() {
         // Event Name
         name = data.getEventName();
@@ -59,7 +58,6 @@ public class FormValidator {
             return false;
         }
 
-
         // Registration Fee
         fee = data.getRegistrationFee();
         if (fee < 0) {
@@ -69,7 +67,6 @@ public class FormValidator {
                     JOptionPane.WARNING_MESSAGE);
             return false;
         }
-
         return true;
     }
 }

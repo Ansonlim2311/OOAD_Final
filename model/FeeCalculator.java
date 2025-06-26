@@ -1,4 +1,5 @@
 package model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class FeeCalculator {
         allFeeComponents = new ArrayList<>(feeGroup.getComponents());
 
         subTotal = new SubTotalFee(feeGroup);
-        
+
         if (subTotal.getFee() >= 2000 && pax >= 5) {
             discount = new Discount(feeGroup, 0.10);
         } else if (subTotal.getFee() >= 2000 || pax >= 5) {

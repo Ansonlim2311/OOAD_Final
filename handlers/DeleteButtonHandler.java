@@ -1,4 +1,5 @@
 package handlers;
+
 import javax.swing.*;
 
 import model.Event;
@@ -12,9 +13,10 @@ import java.awt.event.*;
 public class DeleteButtonHandler implements ActionListener {
     private JTable eventTable;
     private EventManager eventManager;
-    private EventTable eventTableModel; // This is your custom TableModel
+    private EventTable eventTableModel;
     private EventFormPanel formPanel;
     private FormDataExtractor data;
+    private Event toDelete;
     private int selectedRow, confirm;
 
     public DeleteButtonHandler(EventFormPanel formPanel, JTable eventTable, EventManager eventManager, EventTable eventTableModel) {
@@ -44,17 +46,13 @@ public class DeleteButtonHandler implements ActionListener {
 
         if (confirm == JOptionPane.YES_OPTION) {
             try {
-                // 获取要删除的事件对象
-                Event toDelete = eventManager.getEvents().get(selectedRow);
+                toDelete = eventManager.getEvents().get(selectedRow);
                 eventManager.deleteEvent(toDelete.getId());
 
-                // 更新表格
                 eventTableModel.fireTableDataChanged();
 
-                // 提示删除成功
                 JOptionPane.showMessageDialog(eventTable, "Event deleted successfully!", "Delete Success", JOptionPane.INFORMATION_MESSAGE);
 
-                // 清空表单
                 data.clearForm();
 
             } catch (IndexOutOfBoundsException ex) {

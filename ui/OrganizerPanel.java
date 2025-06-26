@@ -1,4 +1,6 @@
 package ui;
+
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -11,8 +13,6 @@ import model.EventManager;
 import table.EventTable;
 import util.CreateButton;
 import util.FormDataExtractor;
-
-import java.awt.*;
 
 public class OrganizerPanel extends JPanel {
     private JButton addButton, deleteButton, updateButton;
@@ -45,7 +45,7 @@ public class OrganizerPanel extends JPanel {
         listPanel.setBackground(Color.WHITE);
         listPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
-        tableModel = new EventTable(eventManager.getEvents()); // ✅ only here
+        tableModel = new EventTable(eventManager.getEvents());
         eventTable = new JTable(tableModel);
         eventTable.setFont(new Font("Monospaced", Font.BOLD, 22));
         eventTable.setRowHeight(28);
@@ -72,7 +72,7 @@ public class OrganizerPanel extends JPanel {
 
         add(buttonPanel, BorderLayout.SOUTH);
 
-        // ✅ Register the handler here using the same tableModel
+        // Register the handler here using the same tableModel
         addButton.addActionListener(new AddButtonHandler(formPanel, eventManager, tableModel));
         deleteButton.addActionListener(new DeleteButtonHandler(formPanel,eventTable, eventManager, tableModel));
         updateButton.addActionListener(new UpdateButtonHandler(formPanel, eventManager, tableModel, eventTable));

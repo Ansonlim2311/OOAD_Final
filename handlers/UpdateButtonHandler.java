@@ -1,4 +1,5 @@
 package handlers;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -14,13 +15,13 @@ public class UpdateButtonHandler implements ActionListener {
     private EventFormPanel formPanel;
     private EventManager eventManager;
     private EventTable eventTable;
-    private JTable table; // 用于获取 selectedRow
+    private JTable table;
     private FormDataExtractor data;
     private FormValidator validator;
     private int selectedRow, eventId, capacity;
     private String name, date, venue, type;
     private double fee;
-    private Event updatedEvent;
+    private Event updatedEvent, oldEvent;
 
     public UpdateButtonHandler(EventFormPanel formPanel, EventManager eventManager, EventTable eventTable, JTable table) {
         this.formPanel = formPanel;
@@ -45,7 +46,7 @@ public class UpdateButtonHandler implements ActionListener {
         }
 
         // 获取旧 Event 的 ID
-        Event oldEvent = eventManager.getEvents().get(selectedRow);
+        oldEvent = eventManager.getEvents().get(selectedRow);
         eventId = oldEvent.getId(); // 保留原 ID
 
         // 收集新数据
