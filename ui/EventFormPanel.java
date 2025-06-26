@@ -26,7 +26,6 @@ public class EventFormPanel extends JPanel {
         dateField.setText("DD-MM-YYYY"); // Placeholder text
         System.out.println("Date entered: " + dateField.getText());
 
-
         venue = new JComboBox<>(getVenueOptions());
         styleComboBox(venue);
 

@@ -44,7 +44,14 @@ public class FeeCalculator {
         allFeeComponents = new ArrayList<>(feeGroup.getComponents());
 
         subTotal = new SubTotalFee(feeGroup);
-        discount = new Discount(feeGroup, 0.05);
+        
+        if (subTotal.getFee() >= 2000 && pax >= 5) {
+            discount = new Discount(feeGroup, 0.10);
+        } else if (subTotal.getFee() >= 2000 || pax >= 5) {
+            discount = new Discount(feeGroup, 0.05);
+        } else {
+            discount = new Discount(feeGroup, 0.00);
+        }
         finalFee = new FinalFee(subTotal, discount);
 
         allFeeComponents.add(subTotal);

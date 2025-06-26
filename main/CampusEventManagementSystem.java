@@ -26,7 +26,7 @@ public class CampusEventManagementSystem implements RegistrationNavigator {
     private void mainPageUI() {
         frame = new JFrame("Campus Event Management System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1500, 1000);
+        frame.setSize(1550, 1000);
         frame.setLocationRelativeTo(null);
         
         container = new JPanel(new BorderLayout());

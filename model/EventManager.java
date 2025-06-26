@@ -43,11 +43,11 @@ public class EventManager {
         // Using removeIf is concise and efficient for Java 8+
         removed = events.removeIf(event -> event.getId() == eventId);
         if (removed) {
+            fileWriter.updateCsv(events);
             System.out.println("Event with ID " + eventId + " deleted successfully.");
         } else {
             System.out.println("Event with ID " + eventId + " not found for deletion.");
         }
-        fileWriter.updateCsv(events);
     }
     public Event getEventAt(int index) {
     if (index >= 0 && index < events.size()) {
@@ -63,11 +63,11 @@ public class EventManager {
             existingEvent = events.get(i);
             if (existingEvent.getId() == updatedEvent.getId()) {
                 events.set(i, updatedEvent);
+                fileWriter.updateCsv(events);
                 System.out.println("Event with ID " + updatedEvent.getId() + " updated successfully.");
                 return;
             }
         }
         System.out.println("Event with ID " + updatedEvent.getId() + " not found for update.");
-        fileWriter.updateCsv(events);
     }
 }
