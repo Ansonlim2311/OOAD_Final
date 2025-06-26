@@ -5,7 +5,6 @@ import handlers.EventRegistrationHandler;
 
 import java.awt.*;
 
-import interfaces.RegistrationNavigator;
 import main.CampusEventManagementSystem;
 import model.Event;
 import model.EventManager;

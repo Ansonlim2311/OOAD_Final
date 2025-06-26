@@ -18,7 +18,6 @@ public class Event {
         this.baseFee = baseFee;
     }
 
-
     public Event(String eventName, String date, String venue, String eventType, int capacity, double baseFee) {
         this(0, eventName, date, venue, eventType, capacity, baseFee); // Call the main constructor with a default ID (e.g., 0)
     }

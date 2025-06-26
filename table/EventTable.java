@@ -6,7 +6,7 @@ import model.Event;
 import java.util.List;
 
 public class EventTable extends AbstractTableModel{
-    private final String[] columnNames = {"Event Name", "Date", "Venue", "Event Type", "Capacity", "Base Fee"};
+    private final String[] columnNames = {"Event Name", "Date", "Venue", "Event Type", "Capacity", "Registration Fee"};
     private final List<Event> events;
     private Event event;
 

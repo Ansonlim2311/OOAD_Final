@@ -16,6 +16,11 @@ import java.awt.*;
 
 public class OrganizerPanel extends JPanel {
     private JButton addButton, deleteButton, updateButton;
+    private JSplitPane mainContentSplitPane;
+    private JPanel listPanel;
+    private EventTable tableModel;
+    private JTable eventTable;
+    private JScrollPane scrollPane;
     private EventFormPanel formPanel;
     private FormDataExtractor data;
     private CreateButton buttonCreator = new CreateButton();
@@ -25,7 +30,7 @@ public class OrganizerPanel extends JPanel {
         setBackground(Color.LIGHT_GRAY);
 
         // -------- Split Pane --------
-        JSplitPane mainContentSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        mainContentSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         mainContentSplitPane.setDividerLocation(320);
         mainContentSplitPane.setDividerSize(5);
         mainContentSplitPane.setContinuousLayout(true);
@@ -36,17 +41,17 @@ public class OrganizerPanel extends JPanel {
         mainContentSplitPane.setLeftComponent(formPanel);
 
         // -------- Right Panel: Table --------
-        JPanel listPanel = new JPanel(new BorderLayout());
+        listPanel = new JPanel(new BorderLayout());
         listPanel.setBackground(Color.WHITE);
         listPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
-        EventTable tableModel = new EventTable(eventManager.getEvents()); // ✅ only here
-        JTable eventTable = new JTable(tableModel);
+        tableModel = new EventTable(eventManager.getEvents()); // ✅ only here
+        eventTable = new JTable(tableModel);
         eventTable.setFont(new Font("Monospaced", Font.BOLD, 22));
         eventTable.setRowHeight(28);
         eventTable.getTableHeader().setReorderingAllowed(false);
         eventTable.getTableHeader().setFont(new Font("Monospaced", Font.BOLD, 20));
-        JScrollPane scrollPane = new JScrollPane(eventTable);
+        scrollPane = new JScrollPane(eventTable);
         scrollPane.setBorder(BorderFactory.createTitledBorder("Event List"));
         listPanel.add(scrollPane, BorderLayout.CENTER);
 

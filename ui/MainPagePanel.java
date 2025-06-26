@@ -10,7 +10,7 @@ public class MainPagePanel extends JPanel {
     private JPanel content, buttonPanel, centerContent;
     private JLabel titleLabel, subtitleLabel;
     private JButton organizerButton, participantButton;
-    CreateButton buttonCreator = new CreateButton();
+    private CreateButton buttonCreator = new CreateButton();
 
     public MainPagePanel(CampusEventManagementSystem controller) {
         setLayout(new BorderLayout());
