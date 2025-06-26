@@ -47,6 +47,7 @@ public class EventManager {
         } else {
             System.out.println("Event with ID " + eventId + " not found for deletion.");
         }
+        fileWriter.updateCsv(events);
     }
     public Event getEventAt(int index) {
     if (index >= 0 && index < events.size()) {
@@ -67,5 +68,6 @@ public class EventManager {
             }
         }
         System.out.println("Event with ID " + updatedEvent.getId() + " not found for update.");
+        fileWriter.updateCsv(events);
     }
 }

@@ -2,7 +2,9 @@ package util;
 
 import model.Event;
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.util.List;
 import java.io.IOException;
 
 public class CsvWriter {
@@ -14,16 +16,36 @@ public class CsvWriter {
 
     public void appendEvent(Event event) {
         try {
-            FileWriter writer = new FileWriter(filePath);
-            writer.append(event.getEventName()).append(',');
-            writer.append(event.getDate()).append(',');
-            writer.append(event.getVenue()).append(',');
-            writer.append(event.getEventType()).append(',');
-            writer.append(String.valueOf(event.getCapacity())).append(',');
-            writer.append(String.valueOf(event.getBaseFee())).append('\n');
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true));
+            writer.write(formatEvent(event));
+            writer.newLine();
             writer.close();
         } catch (IOException error) {
             error.printStackTrace();
         }
+    }
+
+    public void updateCsv(List<Event> events) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+            for (Event e : events) {
+                writer.write(formatEvent(e));
+                writer.newLine();
+            } 
+            writer.close();
+        } catch (IOException error) {
+                error.printStackTrace();
+        }
+    }
+
+    private String formatEvent(Event event) {
+        return String.join(",",
+                String.valueOf(event.getId()),
+                event.getEventName(),
+                event.getDate(),
+                event.getVenue(),
+                event.getEventType(),
+                String.valueOf(event.getCapacity()),
+                String.valueOf(event.getBaseFee()));
     }
 }
