@@ -1,14 +1,13 @@
 package handlers;
 
 import javax.swing.*;
+import java.awt.event.*;
 
 import model.Event;
 import model.EventManager;
 import table.EventTable;
 import ui.EventFormPanel;
 import util.FormDataExtractor;
-
-import java.awt.event.*;
 
 public class DeleteButtonHandler implements ActionListener {
     private JTable eventTable;

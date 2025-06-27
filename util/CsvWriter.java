@@ -1,11 +1,11 @@
 package util;
 
-import model.Event;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.List;
 import java.io.IOException;
+
+import model.Event;
 
 public class CsvWriter {
     private final String filePath;
