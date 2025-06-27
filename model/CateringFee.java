@@ -1,8 +1,9 @@
 package model;
-import interfaces.FeeComponent;
+
+import interfaces.AdditionalService;
 
 //create concrete components
-public class CateringFee implements FeeComponent {
+public class CateringFee implements AdditionalService {
     private final int pax;
 
     public CateringFee(int pax) {

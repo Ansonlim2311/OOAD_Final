@@ -1,5 +1,6 @@
 package model;
-public class Event {
+
+public abstract class Event {
     private int id; // Add this field for a unique identifier
     private String eventName;
     private String date;
@@ -21,6 +22,8 @@ public class Event {
     public Event(String eventName, String date, String venue, String eventType, int capacity, double baseFee) {
         this(0, eventName, date, venue, eventType, capacity, baseFee); // Call the main constructor with a default ID (e.g., 0)
     }
+
+    public abstract String getTypeDisplayName();
 
     public int getId() {
         return id;

@@ -10,6 +10,10 @@ import table.EventTable;
 import ui.EventFormPanel;
 import util.FormDataExtractor;
 import util.FormValidator;
+import model.SeminarEvent;
+import model.SportsEvents;
+import model.WorkshopsEvent;
+import model.CulturalEvents;
 
 public class AddButtonHandler implements ActionListener {
     private EventFormPanel formPanel;
@@ -44,7 +48,27 @@ public class AddButtonHandler implements ActionListener {
         capacity = data.getCapacity();
         fee = data.getRegistrationFee();
 
-        newEvent = new Event(name, date, venue, type, capacity, fee);
+        // newEvent = new Event(name, date, venue, type, capacity, fee);
+        switch(type) {
+            case "Seminars":
+                newEvent = new SeminarEvent(name, date, venue, type, capacity, fee);
+                break;
+            case "Sports Events":
+                newEvent = new SportsEvents(name, date, venue, type, capacity, fee);
+                break;
+            case "Workshops":
+                newEvent = new WorkshopsEvent(name, date, venue, type, capacity, fee);
+                break;
+            case "Cultural Events":
+                newEvent = new CulturalEvents(name, date, venue, type, capacity, fee);
+                break;
+            default:
+                JOptionPane.showMessageDialog(formPanel,
+                        "Invalid event type selected.",
+                        "Input Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+        }
         eventManager.addEvent(newEvent); 
         eventTable.fireTableDataChanged();
 

@@ -1,6 +1,10 @@
 package util;
 
 import model.Event;
+import model.SeminarEvent;
+import model.SportsEvents;
+import model.CulturalEvents;
+import model.WorkshopsEvent;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,6 +18,7 @@ public class CsvReader {
     private String line, name, date, venue, type;
     private int id, capacity;
     private double fee;
+    private Event newEvent;
 
     public CsvReader(String filePath) {
         this.filePath = filePath;
@@ -39,7 +44,26 @@ public class CsvReader {
                     capacity = Integer.parseInt(parts[5]);
                     fee = Double.parseDouble(parts[6]);
 
-                    events.add(new Event(id, name, date, venue, type, capacity, fee));
+                    // events.add(new Event(id, name, date, venue, type, capacity, fee));
+                    switch(type) {
+                        case "Seminars":
+                            newEvent = new SeminarEvent(name, date, venue, type, capacity, fee);
+                            break;
+                        case "Sports Events":
+                            newEvent = new SportsEvents(name, date, venue, type, capacity, fee);
+                            break;
+                        case "Workshops":
+                            newEvent = new WorkshopsEvent(name, date, venue, type, capacity, fee);
+                            break;
+                        case "Cultural Events":
+                            newEvent = new CulturalEvents(name, date, venue, type, capacity, fee);
+                            break;
+                        default:
+                            System.err.println("Invalid event type in CSV: " + type);
+                            continue;
+                    }
+                    newEvent.setId(id);
+                    events.add(newEvent);
                 }
             }
             reader.close();

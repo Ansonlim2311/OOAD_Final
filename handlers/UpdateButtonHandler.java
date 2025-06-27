@@ -10,6 +10,10 @@ import table.EventTable;
 import ui.EventFormPanel;
 import util.FormDataExtractor;
 import util.FormValidator;
+import model.SeminarEvent;
+import model.SportsEvents;
+import model.WorkshopsEvent;
+import model.CulturalEvents;
 
 public class UpdateButtonHandler implements ActionListener {
     private EventFormPanel formPanel;
@@ -58,7 +62,28 @@ public class UpdateButtonHandler implements ActionListener {
         fee = data.getRegistrationFee();
 
         // 用新数据构造新 Event（保留原 ID）
-        updatedEvent = new Event(eventId, name, date, venue, type, capacity, fee);
+        // updatedEvent = new Event(eventId, name, date, venue, type, capacity, fee);
+        switch(type) {
+            case "Seminars":
+                updatedEvent = new SeminarEvent(name, date, venue, type, capacity, fee);
+                break;
+            case "Sports Events":
+                updatedEvent = new SportsEvents(name, date, venue, type, capacity, fee);
+                break;
+            case "Workshops":
+                updatedEvent = new WorkshopsEvent(name, date, venue, type, capacity, fee);
+                break;
+            case "Cultural Events":
+                updatedEvent = new CulturalEvents(name, date, venue, type, capacity, fee);
+                break;
+            default:
+                JOptionPane.showMessageDialog(formPanel,
+                        "Invalid event type selected.",
+                        "Input Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+        }
+        updatedEvent.setId(eventId);
         eventManager.updateEvent(updatedEvent);
 
         // 刷新表格
