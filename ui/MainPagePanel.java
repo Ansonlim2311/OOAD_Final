@@ -5,9 +5,6 @@ import java.awt.*;
 
 import main.CampusEventManagementSystem;
 import util.CreateButton;
-import User.Organizer;
-import User.Staff;
-import User.Student;
 
 public class MainPagePanel extends JPanel {
     private JPanel content, buttonPanel, centerContent;
@@ -36,20 +33,14 @@ public class MainPagePanel extends JPanel {
         buttonPanel.setOpaque(false);
 
         organizerButton = buttonCreator.createStyledButton("Organizer", e -> {
-            Organizer organizer = new Organizer("LIMWEIJUN", "241UC2415S", "lim.wei.jun@organizer.mmu.edu.my", "Organizer");
-            controller.setCurrentUser(organizer);
             controller.showOrganizerPanel();
         });
 
         studentButton = buttonCreator.createStyledButton("Student", e -> {
-            Student student = new Student("Jayy", "241UC24178", "jayy.wong.jun@student.mmu.edu.my", "Student");
-            controller.setCurrentUser(student);
             controller.showParticipatePanel();
         });
 
         staffButton = buttonCreator.createStyledButton("Staff", e -> {
-            Staff staff = new Staff("Kerqian", "241UC2415E", "ker.qian@staff.mmu.edu.my", "Staff");
-            controller.setCurrentUser(staff);
             controller.showParticipatePanel();
         });
 
