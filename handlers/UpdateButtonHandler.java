@@ -59,7 +59,7 @@ public class UpdateButtonHandler implements ActionListener {
         capacity = data.getCapacity();
         fee = data.getRegistrationFee();
 
-        eventFactory.createWithId(eventId, name, date, venue, type, capacity, fee);
+        updatedEvent = eventFactory.createWithId(eventId, name, date, venue, type, capacity, fee);
         updatedEvent.setId(eventId);
         eventManager.updateEvent(updatedEvent);
 

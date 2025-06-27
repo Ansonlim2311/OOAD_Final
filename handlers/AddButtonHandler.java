@@ -46,7 +46,7 @@ public class AddButtonHandler implements ActionListener {
         capacity = data.getCapacity();
         fee = data.getRegistrationFee();
 
-        eventFactory.create(name, date, venue, type, capacity, fee);
+        newEvent = eventFactory.create(name, date, venue, type, capacity, fee);
         eventManager.addEvent(newEvent); 
         eventTable.fireTableDataChanged();
 
