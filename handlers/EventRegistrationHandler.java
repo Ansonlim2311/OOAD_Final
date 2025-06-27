@@ -1,4 +1,5 @@
 package handlers;
+
 import interfaces.RegistrationNavigator;
 import model.Event;
 import model.FeeCalculator;

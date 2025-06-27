@@ -5,9 +5,4 @@ public class CulturalEvents extends Event {
         
         super(name, date, venue, eventType, capacity, registrationFee);
     }
-
-    @Override 
-    public String getTypeDisplayName() { 
-        return "Cultural Events"; 
-    }
 }

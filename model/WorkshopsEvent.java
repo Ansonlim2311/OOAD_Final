@@ -5,9 +5,4 @@ public class WorkshopsEvent extends Event {
 
         super(name, date, venue, eventType, capacity, registrationFee);
     }
-
-    @Override 
-    public String getTypeDisplayName() { 
-        return "Workshops"; 
-    }
 }
