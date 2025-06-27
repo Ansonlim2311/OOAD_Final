@@ -12,7 +12,6 @@ import main.CampusEventManagementSystem;
 import model.EventManager;
 import table.EventTable;
 import util.CreateButton;
-import util.FormDataExtractor;
 
 public class OrganizerPanel extends JPanel {
     private JButton addButton, deleteButton, updateButton;
@@ -22,7 +21,6 @@ public class OrganizerPanel extends JPanel {
     private JTable eventTable;
     private JScrollPane scrollPane;
     private EventFormPanel formPanel;
-    private FormDataExtractor data;
     private CreateButton buttonCreator = new CreateButton();
 
     public OrganizerPanel(CampusEventManagementSystem controller, EventManager eventManager) {
@@ -81,22 +79,21 @@ public class OrganizerPanel extends JPanel {
         eventTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                data = new FormDataExtractor(formPanel);
                 if (!e.getValueIsAdjusting()) {
                     int selectedRow = eventTable.getSelectedRow();
                     if (selectedRow >= 0) {
-                        formPanel.eventNameField.setText(eventTable.getValueAt(selectedRow, 0).toString());
-                        formPanel.dateField.setText(eventTable.getValueAt(selectedRow, 1).toString());
-                        formPanel.venue.setSelectedItem(eventTable.getValueAt(selectedRow, 2).toString());
-                        formPanel.typeevent.setSelectedItem(eventTable.getValueAt(selectedRow, 3).toString());
-                        formPanel.capacityField.setValue(Integer.parseInt(eventTable.getValueAt(selectedRow, 4).toString()));
-                        formPanel.registrationField.setValue(Double.parseDouble(eventTable.getValueAt(selectedRow, 5).toString()));
+                        formPanel.setEventName(eventTable.getValueAt(selectedRow, 0).toString());
+                        formPanel.setDate(eventTable.getValueAt(selectedRow, 1).toString());
+                        formPanel.setVenue(eventTable.getValueAt(selectedRow, 2).toString());
+                        formPanel.setTypeEvent(eventTable.getValueAt(selectedRow, 3).toString());
+                        formPanel.setCapacity(Integer.parseInt(eventTable.getValueAt(selectedRow, 4).toString()));
+                        formPanel.setRegistrationFee(Double.parseDouble(eventTable.getValueAt(selectedRow, 5).toString()));
 
                         addButton.setEnabled(false);
                     }
                     else {
                         // Clear the form if no row is selected
-                        data.clearForm();
+                        formPanel.clearForm();
                         addButton.setEnabled(true);
                     }
                 }

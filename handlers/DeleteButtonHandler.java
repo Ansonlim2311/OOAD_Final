@@ -7,14 +7,12 @@ import model.Event;
 import model.EventManager;
 import table.EventTable;
 import ui.EventFormPanel;
-import util.FormDataExtractor;
 
 public class DeleteButtonHandler implements ActionListener {
     private JTable eventTable;
     private EventManager eventManager;
     private EventTable eventTableModel;
     private EventFormPanel formPanel;
-    private FormDataExtractor data;
     private Event toDelete;
     private int selectedRow, confirm;
 
@@ -27,7 +25,6 @@ public class DeleteButtonHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        data = new FormDataExtractor(formPanel);
         selectedRow = eventTable.getSelectedRow();
 
         if (selectedRow == -1) {
@@ -52,7 +49,7 @@ public class DeleteButtonHandler implements ActionListener {
 
                 JOptionPane.showMessageDialog(eventTable, "Event deleted successfully!", "Delete Success", JOptionPane.INFORMATION_MESSAGE);
 
-                data.clearForm();
+                formPanel.clearForm();
 
             } catch (IndexOutOfBoundsException ex) {
                 JOptionPane.showMessageDialog(eventTable,

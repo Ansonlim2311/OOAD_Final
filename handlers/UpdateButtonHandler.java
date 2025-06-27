@@ -8,7 +8,6 @@ import model.Event;
 import model.EventManager;
 import table.EventTable;
 import ui.EventFormPanel;
-import util.FormDataExtractor;
 import util.FormValidator;
 import model.EventFactory;
 
@@ -17,7 +16,6 @@ public class UpdateButtonHandler implements ActionListener {
     private EventManager eventManager;
     private EventTable eventTable;
     private JTable table;
-    private FormDataExtractor data;
     private FormValidator validator;
     private int selectedRow, eventId, capacity;
     private String name, date, venue, type;
@@ -34,8 +32,7 @@ public class UpdateButtonHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        data = new FormDataExtractor(formPanel);
-        validator = new FormValidator(data, formPanel);
+        validator = new FormValidator(formPanel, formPanel);
         selectedRow = table.getSelectedRow();
 
         if (selectedRow == -1) {
@@ -52,12 +49,12 @@ public class UpdateButtonHandler implements ActionListener {
         eventId = oldEvent.getId(); // 保留原 ID
 
         // 收集新数据
-        name = data.getEventName();
-        date = data.getDate();
-        venue = data.getVenue();
-        type = data.getTypeEvent();
-        capacity = data.getCapacity();
-        fee = data.getRegistrationFee();
+        name = formPanel.getEventName();
+        date = formPanel.getDate();
+        venue = formPanel.getVenue();
+        type = formPanel.getTypeEvent();
+        capacity = formPanel.getCapacity();
+        fee = formPanel.getRegistrationFee();
 
         updatedEvent = eventFactory.createWithId(eventId, name, date, venue, type, capacity, fee);
         updatedEvent.setId(eventId);
@@ -78,7 +75,6 @@ public class UpdateButtonHandler implements ActionListener {
                 "Event Updated",
                 JOptionPane.INFORMATION_MESSAGE
         );
-
-        data.clearForm();
+        formPanel.clearForm();
     }
 }

@@ -8,7 +8,6 @@ import model.Event;
 import model.EventManager;
 import table.EventTable;
 import ui.EventFormPanel;
-import util.FormDataExtractor;
 import util.FormValidator;
 import model.EventFactory;
 
@@ -19,7 +18,6 @@ public class AddButtonHandler implements ActionListener {
     private String name, date, venue, type;
     private int capacity;
     private double fee;
-    private FormDataExtractor data;
     private FormValidator validator;
     private Event newEvent;
     private EventFactory eventFactory = new EventFactory();
@@ -32,19 +30,18 @@ public class AddButtonHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        data = new FormDataExtractor(formPanel);
-        validator = new FormValidator(data, formPanel);
+        validator = new FormValidator(formPanel, formPanel);
 
         if (!validator.validateAll()) {
             return;
         }
 
-        name = data.getEventName();
-        date = data.getDate();
-        venue = data.getVenue();
-        type = data.getTypeEvent();
-        capacity = data.getCapacity();
-        fee = data.getRegistrationFee();
+        name = formPanel.getEventName();
+        date = formPanel.getDate();
+        venue = formPanel.getVenue();
+        type = formPanel.getTypeEvent();
+        capacity = formPanel.getCapacity();
+        fee = formPanel.getRegistrationFee();
 
         newEvent = eventFactory.create(name, date, venue, type, capacity, fee);
         eventFactory.create(name, date, venue, type, capacity, fee);
@@ -62,6 +59,6 @@ public class AddButtonHandler implements ActionListener {
                 "Event Added",
                 JOptionPane.INFORMATION_MESSAGE
         );
-        data.clearForm();
+        formPanel.clearForm();
     }
 }

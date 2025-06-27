@@ -2,7 +2,6 @@ package main;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 import interfaces.RegistrationNavigator;
 import model.Event;
@@ -12,17 +11,17 @@ import ui.FeeCalculationPanel;
 import ui.MainPagePanel;
 import ui.OrganizerPanel;
 import ui.ParticipatePanel;
-import ui.TopBar;
+import ui.UIController;
 import util.CsvWriter;
 import util.CsvReader;
 
 public class CampusEventManagementSystem implements RegistrationNavigator {
     private JFrame frame;
     private JPanel container;
-    private TopBar topBar;
     private CsvReader fileReader = new CsvReader("events.csv");
     private CsvWriter fileWriter = new CsvWriter("events.csv");
     private EventManager eventManager = new EventManager(fileReader, fileWriter);
+    private UIController uiController;
 
     private void mainPageUI() {
         frame = new JFrame("Campus Event Management System");
@@ -31,44 +30,27 @@ public class CampusEventManagementSystem implements RegistrationNavigator {
         frame.setLocationRelativeTo(null);
         
         container = new JPanel(new BorderLayout());
-        
-        topBar = new TopBar("Campus Event Management", null);
-        topBar.setBackground(Color.WHITE);
-        topBar.setPreferredSize(new Dimension(frame.getWidth(), 60));
-        
-        container.add(topBar, BorderLayout.NORTH);
+        uiController = new UIController(frame, container);
+
         showMainPage();
         frame.setContentPane(container);
         frame.setVisible(true);
     }
     
-    public void setTopBar(String title, ActionListener backAction) {
-        topBar = new TopBar(title, backAction);
-    }
-    
-    private void switchPanel(String title, ActionListener backAction, JPanel newPanel) {
-        container.removeAll();
-        setTopBar(title, backAction);
-        container.add(topBar, BorderLayout.NORTH);
-        container.add(newPanel, BorderLayout.CENTER);
-        container.revalidate();
-        container.repaint();
-    }
-    
     public void showMainPage() {
-        switchPanel("Campus Event Management", null, new MainPagePanel(this));
+        uiController.switchPanel("Campus Event Management", null, new MainPagePanel(this));
     }
     
     public void showOrganizerPanel() {
-        switchPanel("Organizer Dashboard", e -> showMainPage(), new OrganizerPanel(this, eventManager));
+        uiController.switchPanel("Organizer Dashboard", e -> showMainPage(), new OrganizerPanel(this, eventManager));
     }
     
     public void showParticipatePanel() {
-        switchPanel("Registration System", e -> showMainPage(), new ParticipatePanel(this, eventManager));
+        uiController.switchPanel("Registration System", e -> showMainPage(), new ParticipatePanel(this, eventManager));
     }
     
     public void showFeeCalculationPanel(Event event, FeeCalculator feeBreakDown) {
-        switchPanel("Fee Calculation", e -> showParticipatePanel(), new FeeCalculationPanel(this, event, feeBreakDown));
+        uiController.switchPanel("Fee Calculation", e -> showParticipatePanel(), new FeeCalculationPanel(this, event, feeBreakDown));
     }
     
     @Override

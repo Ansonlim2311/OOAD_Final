@@ -5,29 +5,31 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import ui.EventFormPanel;
+
 public class FormValidator {
-    private final FormDataExtractor data;
+    private final EventFormPanel formPanel;
     private final JComponent parentComponent;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
     private String name, dateText, venue, type;
     private double fee;
 
-    public FormValidator(FormDataExtractor data, JComponent parentComponent) {
-        this.data = data;
+    public FormValidator(EventFormPanel formPanel, JComponent parentComponent) {
+        this.formPanel = formPanel;
         this.parentComponent = parentComponent;
     }
 
     // method to validate all fields before submission
     public boolean validateAll() {
         // Event Name
-        name = data.getEventName();
+        name = formPanel.getEventName();
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(parentComponent, "Event name cannot be empty.", "Input Error", JOptionPane.WARNING_MESSAGE);
             return false;
         }
 
         // Date: format = d-M-yyyy (accepts 6-6-2025)
-        dateText = data.getDate();
+        dateText = formPanel.getDate();
         try {
             LocalDate.parse(dateText, formatter);
         } catch (DateTimeParseException e) {
@@ -39,7 +41,7 @@ public class FormValidator {
         }
 
         // Venue
-        venue = data.getVenue();
+        venue = formPanel.getVenue();
         if (venue == null || venue.trim().isEmpty() || venue.equalsIgnoreCase("None")) {
             JOptionPane.showMessageDialog(parentComponent,
                     "Venue cannot be empty.\nPlease select a valid venue.",
@@ -49,7 +51,7 @@ public class FormValidator {
         }
 
         // Event Type
-        type = data.getTypeEvent();
+        type = formPanel.getTypeEvent();
         if (type == null || type.trim().isEmpty() || type.equalsIgnoreCase("None")) {
             JOptionPane.showMessageDialog(parentComponent,
                     "Event Type cannot be empty.\nPlease select a valid Event Type.",
@@ -59,7 +61,7 @@ public class FormValidator {
         }
 
         // Registration Fee
-        fee = data.getRegistrationFee();
+        fee = formPanel.getRegistrationFee();
         if (fee < 0) {
             JOptionPane.showMessageDialog(parentComponent,
                     "Registration fee cannot be negative.",
