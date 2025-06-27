@@ -11,7 +11,6 @@ import ui.EventFormPanel;
 import util.FormDataExtractor;
 import util.FormValidator;
 import model.EventFactory;
-import model.EventFactory;
 
 public class UpdateButtonHandler implements ActionListener {
     private EventFormPanel formPanel;
@@ -24,7 +23,6 @@ public class UpdateButtonHandler implements ActionListener {
     private String name, date, venue, type;
     private double fee;
     private Event updatedEvent, oldEvent;
-    private EventFactory eventFactory = new EventFactory();
     private EventFactory eventFactory = new EventFactory();
 
     public UpdateButtonHandler(EventFormPanel formPanel, EventManager eventManager, EventTable eventTable, JTable table) {
