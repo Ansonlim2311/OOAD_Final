@@ -1,4 +1,5 @@
 package handlers;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -7,12 +8,19 @@ import model.Event;
 import model.EventManager;
 import table.EventTable;
 import ui.EventFormPanel;
-import util.GetValue;
+import util.FormValidator;
+import model.EventFactory;
 
 public class AddButtonHandler implements ActionListener {
     private EventFormPanel formPanel;
     private EventManager eventManager;
     private EventTable eventTable;
+    private String name, date, venue, type;
+    private int capacity;
+    private double fee;
+    private FormValidator validator;
+    private Event newEvent;
+    private EventFactory eventFactory = new EventFactory();
 
     public AddButtonHandler(EventFormPanel formPanel, EventManager eventManager, EventTable eventTable) {
         this.formPanel = formPanel;
@@ -22,29 +30,21 @@ public class AddButtonHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        validator = new FormValidator(formPanel, formPanel);
 
-        GetValue getValue = new GetValue(formPanel);
-
-        if (!getValue.validateAll()) {
+        if (!validator.validateAll()) {
             return;
         }
 
-        String name = getValue.getEventName();
-        String date = getValue.getDate();
-        String venue = getValue.getVenue();
-        String type = getValue.getTypeEvent();
-        int capacity = getValue.getCapacity();
-        double fee = getValue.getRegistrationFee();
+        name = formPanel.getEventName();
+        date = formPanel.getDate();
+        venue = formPanel.getVenue();
+        type = formPanel.getTypeEvent();
+        capacity = formPanel.getCapacity();
+        fee = formPanel.getRegistrationFee();
 
-        // Print or show dialog
-        System.out.println("Event Name: " + name);
-        System.out.println("Date: " + date);
-        System.out.println("Venue: " + venue);
-        System.out.println("Type: " + type);
-        System.out.println("Capacity: " + capacity);
-        System.out.println("Fee: RM" + fee);
-
-        Event newEvent = new Event(name, date, venue, type, capacity, fee);
+        newEvent = eventFactory.create(name, date, venue, type, capacity, fee);
+        eventFactory.create(name, date, venue, type, capacity, fee);
         eventManager.addEvent(newEvent); 
         eventTable.fireTableDataChanged();
 
@@ -59,8 +59,6 @@ public class AddButtonHandler implements ActionListener {
                 "Event Added",
                 JOptionPane.INFORMATION_MESSAGE
         );
-        getValue.clearForm();
+        formPanel.clearForm();
     }
-
-    
 }

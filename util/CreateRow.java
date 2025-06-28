@@ -4,8 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CreateRow {
-    JPanel header, row;
-    JLabel leftLabel, rightLabel, nameLabel, valueLabel;
+    private JPanel header, row;
+    private JLabel leftLabel, rightLabel, nameLabel, valueLabel;
+    
         public JPanel createHeaderRow(String left, String right) {
         header = new JPanel(new BorderLayout());
         header.setMaximumSize(new Dimension(1000, 100));

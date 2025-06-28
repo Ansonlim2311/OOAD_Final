@@ -1,4 +1,5 @@
 package handlers;
+
 import interfaces.RegistrationNavigator;
 import model.Event;
 import model.FeeCalculator;
@@ -11,6 +12,8 @@ public class EventRegistrationHandler {
     private final boolean transportSelected;
     private final boolean cateringSelected;
     private final RegistrationNavigator navigator;
+    private double baseFee;
+    private FeeCalculator feeBreakDown;
 
     public EventRegistrationHandler(Event event, int pax, boolean transportSelected, boolean cateringSelected, RegistrationNavigator navigator){
         this.event = event;
@@ -21,9 +24,9 @@ public class EventRegistrationHandler {
     }
 
     public void processRegistration() {
-        double baseFee = event.getBaseFee();
+        baseFee = event.getBaseFee();
 
-        FeeCalculator feeBreakDown = new FeeCalculator(baseFee, pax, transportSelected, cateringSelected);
+        feeBreakDown = new FeeCalculator(baseFee, pax, transportSelected, cateringSelected);
 
         navigator.nagivateToFeePanel(event, feeBreakDown);
     }

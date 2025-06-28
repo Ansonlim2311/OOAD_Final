@@ -1,10 +1,11 @@
 package util;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class CreateButton {
-    JButton button;
+    private JButton button;
 
     public JButton createStyledButton(String text, ActionListener action) {
         button = new JButton(text);

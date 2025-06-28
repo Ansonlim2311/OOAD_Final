@@ -1,11 +1,9 @@
 package ui;
+
 import javax.swing.*;
-
-import handlers.EventRegistrationHandler;
-
 import java.awt.*;
 
-import interfaces.RegistrationNavigator;
+import handlers.EventRegistrationHandler;
 import main.CampusEventManagementSystem;
 import model.Event;
 import model.EventManager;
@@ -13,28 +11,37 @@ import table.EventTable;
 import util.CreateButton;
 
 public class ParticipatePanel extends JPanel {
-    JComboBox<Integer> paxDropdown;
-    JTable eventTable;
-    CreateButton buttonCreator = new CreateButton();
+    private JPanel paxBar, paxSelectionPanel, centerPanel, tableWrapper, registerBar, leftPanel, buttonPanel, messageBar;
+    private JLabel paxLabel, serviceLabel, messageLabel;
+    private JComboBox<Integer> paxDropdown;
+    private JTable eventTable;
+    private CreateButton buttonCreator = new CreateButton();
+    private Integer[] paxOptions = new Integer[50];
+    private EventTable model;
+    private JScrollPane scrollPane;
+    private JCheckBox transportOption, cateringOption;
+    private JButton registerButton;
+    private EventRegistrationHandler handler;
+    private Event event;
+    private int row, pax;
+    private boolean transport, catering;
 
     public ParticipatePanel(CampusEventManagementSystem controller, EventManager eventManager) {
         setLayout(new BorderLayout());
         //1.Create a pax selection Bar//
-        JPanel paxBar = new JPanel(new BorderLayout());
+        paxBar = new JPanel(new BorderLayout());
         paxBar.setBackground(Color.WHITE);
         paxBar.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         paxBar.setPreferredSize(new Dimension(0, 40));
 
          //2.Create pax dropdown + pax label//
-        JPanel paxSelectionPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT,10,0));
+        paxSelectionPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT,10,0));
         paxSelectionPanel.setBackground(Color.WHITE);
 
-        JLabel paxLabel = new JLabel("Number of pax:");
+        paxLabel = new JLabel("Number of pax:");
         paxLabel.setFont(new Font("Monospaced",Font.BOLD,21));
 
-
-        Integer[] paxOptions = new Integer[50];
-        for (int i=0 ; i < 50; i++) { 
+        for (int i = 0 ; i < 50; i++) { 
             paxOptions[i] = i+1;
         }
         
@@ -48,43 +55,43 @@ public class ParticipatePanel extends JPanel {
         paxBar.add(paxSelectionPanel, BorderLayout.EAST);
 
         //3.Table panel in center//
-        JPanel centerPanel = new JPanel();
+        centerPanel = new JPanel();
         centerPanel.setBackground(Color.WHITE);
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 
-        JPanel tableWrapper = new JPanel(new BorderLayout());
+        tableWrapper = new JPanel(new BorderLayout());
         tableWrapper.setPreferredSize(new Dimension(1300,650));
         tableWrapper.setBorder(BorderFactory.createTitledBorder("Event List"));
         tableWrapper.setFont(new Font("Monospaced", Font.BOLD, 22));
 
-        EventTable model = new EventTable(eventManager.getEvents());
+        model = new EventTable(eventManager.getEvents());
         eventTable = new JTable(model);
         eventTable.setFont(new Font("Monospaced", Font.BOLD, 22));
         eventTable.setRowHeight(28);
         eventTable.getTableHeader().setReorderingAllowed(false);
         eventTable.getTableHeader().setFont(new Font("Monospaced", Font.BOLD, 24));
-        JScrollPane scrollPane = new JScrollPane(eventTable);
+        scrollPane = new JScrollPane(eventTable);
         tableWrapper.add(scrollPane,BorderLayout.CENTER);
 
         //4.Register Bar with 2 radio button 
         //Border Layout for main container (register Bar) left right mostly for large section like header 
-        JPanel registerBar = new JPanel(new BorderLayout());
+        registerBar = new JPanel(new BorderLayout());
         registerBar.setPreferredSize(new Dimension(1300,60));
         registerBar.setBackground(Color.WHITE);
 
         //left side checkbox + services label
         //FlowLayout inside each section (Radio Panel and buttonPanel) mostlyy for buttons, form fields
-        JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 30, 20));
+        leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 30, 20));
         leftPanel.setBackground(Color.WHITE);
 
-        JLabel serviceLabel = new JLabel("Additional Services:");
+        serviceLabel = new JLabel("Additional Services:");
         serviceLabel.setFont(new Font("Monospaced", Font.BOLD, 23));
 
-        JCheckBox transportOption = new JCheckBox("Transportation (RM50/p)");
+        transportOption = new JCheckBox("Transportation (RM50/p)");
         transportOption.setFont(new Font("Monospaced",Font.BOLD,23));
         transportOption.setBackground(Color.WHITE);
 
-        JCheckBox cateringOption = new JCheckBox("Catering Service (RM50/p)");
+        cateringOption = new JCheckBox("Catering Service (RM50/p)");
         cateringOption.setFont(new Font("Monospaced",Font.BOLD,23));
         cateringOption.setBackground(Color.WHITE);
 
@@ -93,24 +100,24 @@ public class ParticipatePanel extends JPanel {
         leftPanel.add(cateringOption);
 
         //right side register buttons
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 20, 5));
+        buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 20, 5));
         buttonPanel.setBackground(Color.WHITE);
 
-        JButton registerButton = buttonCreator.createStyledButton("Register Now", 250, 50);
+        registerButton = buttonCreator.createStyledButton("Register Now", 250, 50);
         registerButton.addActionListener(e -> {
-            int row = eventTable.getSelectedRow();
+            row = eventTable.getSelectedRow();
             if (row == -1) {
                 JOptionPane.showMessageDialog(null, "Please select an event.");
                 return;
             }
 
-            Event event = ((EventTable) eventTable.getModel()).getEventAt(row); //get event at eventTable
-            int pax = (int) paxDropdown.getSelectedItem();
-            boolean transport = transportOption.isSelected();
-            boolean catering = cateringOption.isSelected();
+            event = ((EventTable) eventTable.getModel()).getEventAt(row); //get event at eventTable
+            pax = (int) paxDropdown.getSelectedItem();
+            transport = transportOption.isSelected();
+            catering = cateringOption.isSelected();
 
             // Do the rest using your original instance-based handler
-            EventRegistrationHandler handler = new EventRegistrationHandler(event, pax, transport, catering, controller);
+            handler = new EventRegistrationHandler(event, pax, transport, catering, controller);
             handler.processRegistration();
         });
 
@@ -119,11 +126,11 @@ public class ParticipatePanel extends JPanel {
         registerBar.add(buttonPanel,BorderLayout.EAST);
 
         //5.Message Bar
-        JPanel messageBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        messageBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
         messageBar.setPreferredSize(new Dimension(1300,50));
         messageBar.setBackground(Color.WHITE);
 
-        JLabel messageLabel = new JLabel("**Each user are allowed only to register an event at each time.**");
+        messageLabel = new JLabel("**Each user are allowed only to register an event at each time.**");
         messageLabel.setFont(new Font("Monospaced", Font.BOLD, 16));
         messageBar.add(messageLabel);
 

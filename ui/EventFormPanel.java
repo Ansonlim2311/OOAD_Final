@@ -3,9 +3,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class EventFormPanel extends JPanel {
-    public JTextField eventNameField, dateField;
-    public JComboBox<String> venue, typeevent;
-    public JSpinner capacityField, registrationField;
+    private JTextField eventNameField, dateField;
+    private JComboBox<String> venue, typeevent;
+    private JSpinner capacityField, registrationField;
 
     public EventFormPanel() {
         setLayout(new GridBagLayout());
@@ -25,7 +25,6 @@ public class EventFormPanel extends JPanel {
         dateField = createTextField(250);
         dateField.setText("DD-MM-YYYY"); // Placeholder text
         System.out.println("Date entered: " + dateField.getText());
-
 
         venue = new JComboBox<>(getVenueOptions());
         styleComboBox(venue);
@@ -97,5 +96,62 @@ public class EventFormPanel extends JPanel {
             "CQAR 4001", "CQAR 4002", "CQAR 4003", "CQAR 4004", "CQAR 4005",
             "CQMX 1001", "CQMX 1002", "CQMX 1003", "CQMX 1004", "CQMX 1005"
         };
+    }
+
+    public void setEventName(String name) {
+        eventNameField.setText(name);
+    }
+
+    public String getEventName() {
+        return eventNameField.getText().trim();
+    }
+
+    public void setDate(String date) {
+        dateField.setText(date);
+    }
+
+    public String getDate() {
+        return dateField.getText().trim();
+    }
+
+    public void setVenue(String venueName) {
+        venue.setSelectedItem(venueName);
+    }
+
+    public String getVenue() {
+        return (String) venue.getSelectedItem();
+    }
+
+    public void setTypeEvent(String type) {
+        typeevent.setSelectedItem(type);
+    }
+
+    public String getTypeEvent() {
+        return (String) typeevent.getSelectedItem();
+    }
+
+    public void setCapacity(int capacity) {
+        capacityField.setValue(capacity);
+    }
+
+    public int getCapacity() {
+        return (Integer) capacityField.getValue();
+    }
+
+    public void setRegistrationFee(double fee) {
+        registrationField.setValue(fee);
+    }
+
+    public double getRegistrationFee() {
+        return ((Number) registrationField.getValue()).doubleValue();
+    }
+
+    public void clearForm() {
+        eventNameField.setText("");
+        dateField.setText("DD-MM-YYYY");
+        venue.setSelectedIndex(0);
+        typeevent.setSelectedIndex(0);
+        capacityField.setValue(1);
+        registrationField.setValue(1.0);
     }
 }

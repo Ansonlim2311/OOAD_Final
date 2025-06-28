@@ -1,7 +1,8 @@
 package model;
-import interfaces.FeeComponent;
 
-public class TransportFee implements FeeComponent {
+import interfaces.AdditionalService;
+
+public class TransportFee implements AdditionalService {
     private final int pax;
 
     public TransportFee(int pax){
@@ -18,4 +19,3 @@ public class TransportFee implements FeeComponent {
         return "Transporation Fee" ; 
     }
 }
-

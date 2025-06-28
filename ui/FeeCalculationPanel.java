@@ -1,7 +1,7 @@
 package ui;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.*;
 
 import interfaces.FeeComponent;
@@ -12,11 +12,13 @@ import util.CreateButton;
 import util.CreateRow;
 
 public class FeeCalculationPanel extends JPanel {
-    JPanel contentPanel, titlePanel, breakdownPanel, buttonPanel;
-    JLabel billTitle;
-    JButton payButton;
-    CreateButton buttonCreator = new CreateButton();
-    CreateRow rowCreator = new CreateRow();
+    private JPanel contentPanel, titlePanel, breakdownPanel, buttonPanel;
+    private JLabel billTitle;
+    private JButton payButton;
+    private CreateButton buttonCreator = new CreateButton();
+    private CreateRow rowCreator = new CreateRow();
+    private JPanel messageBar;
+    private JLabel discountLabel;
 
     public FeeCalculationPanel(CampusEventManagementSystem controller, Event event, FeeCalculator feeBreakdown) {
         setLayout(new BorderLayout());
@@ -62,7 +64,16 @@ public class FeeCalculationPanel extends JPanel {
             JOptionPane.showMessageDialog(this, "Payment processed. Thank you!");
         });
 
+        messageBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        messageBar.setPreferredSize(new Dimension(1300,50));
+        messageBar.setBackground(Color.WHITE);
+
+        discountLabel = new JLabel("**Group Discount 5% (5 Or More Pax)  Total Amount Discount 5% (Total Amount More than 2000)**");
+        discountLabel.setFont(new Font("Monospaced", Font.BOLD, 16));
+        messageBar.add(discountLabel);
+
         buttonPanel.add(payButton);
+        contentPanel.add(messageBar);
         contentPanel.add(buttonPanel);
 
         add(contentPanel, BorderLayout.CENTER);
