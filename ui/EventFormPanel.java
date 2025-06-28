@@ -36,7 +36,7 @@ public class EventFormPanel extends JPanel {
         capacityField = new JSpinner(new SpinnerNumberModel(1, 0, Integer.MAX_VALUE, 1));
         styleSpinner(capacityField);
 
-        registrationField = new JSpinner(new SpinnerNumberModel(1, 0, Double.MAX_VALUE, 1));
+        registrationField = new JSpinner(new SpinnerNumberModel(0.0, 0, Double.MAX_VALUE, 1));
         styleSpinner(registrationField);
 
         // Add components using helper
