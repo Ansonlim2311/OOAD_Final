@@ -14,7 +14,7 @@ import util.CreateRow;
 public class FeeCalculationPanel extends JPanel {
     private JPanel contentPanel, titlePanel, breakdownPanel, buttonPanel;
     private JLabel billTitle;
-    private JButton payButton;
+    private JButton payButton, cancelButton;
     private CreateButton buttonCreator = new CreateButton();
     private CreateRow rowCreator = new CreateRow();
     private JPanel messageBar;
@@ -58,7 +58,12 @@ public class FeeCalculationPanel extends JPanel {
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         buttonPanel.setBackground(Color.WHITE);
 
+        cancelButton = buttonCreator.createStyledButton("Cancel", 220, 70);
         payButton = buttonCreator.createStyledButton("Pay Now", 220, 70);
+
+        cancelButton.addActionListener(e -> {
+            controller.showParticipatePanel();
+        });
 
         payButton.addActionListener(e -> {
             JOptionPane.showMessageDialog(this, "Payment processed. Thank you!");
@@ -72,6 +77,7 @@ public class FeeCalculationPanel extends JPanel {
         discountLabel.setFont(new Font("Monospaced", Font.BOLD, 16));
         messageBar.add(discountLabel);
 
+        buttonPanel.add(cancelButton);
         buttonPanel.add(payButton);
         contentPanel.add(messageBar);
         contentPanel.add(buttonPanel);
