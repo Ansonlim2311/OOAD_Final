@@ -35,7 +35,7 @@ public class OrganizerPanel extends JPanel {
 
         // -------- Left Panel: Form --------
         formPanel = new EventFormPanel();
-        formPanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2));
+        formPanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 25));
         mainContentSplitPane.setLeftComponent(formPanel);
 
         // -------- Right Panel: Table --------
